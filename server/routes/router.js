@@ -24,8 +24,15 @@ const createRouter = function (table) {
   // Delete all Flights
   router.delete("/", table.deleteAll);
 
-  //Retrieve all published Flights
+  //Retrieve all arriving Flights
   // router.get("/departures", table.findAllDeparting);
+
+  //Retrieve all departing Flights
+  // router.get("/arrivals", table.findAllDeparting);
+
+  //Retrieve Flight by flight number
+  // router.get("/:flightnumber", table.findAllDeparting);
+
 
   return router;
 }

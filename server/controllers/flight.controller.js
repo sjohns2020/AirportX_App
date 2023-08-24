@@ -44,7 +44,11 @@ exports.findAll = (req, res) => {
       else res.send(data);
     });
   };
-  
+
+// find all departing
+// find all arriving
+// find by flight number
+
 //   exports.findAllDeparting = (req, res) => {
 
 //     Flight.getAllDepartingFlights(req.params.departed, (err, data) => {

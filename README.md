@@ -48,7 +48,18 @@ SETUP
     - Installation instructions can be found [here](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/installing.html)
     - Mac - install with [Homebrew]()
 - Create the database locally
-    - …Instructions to create database…
+    - Terminal: createdb flights
+    - In the server create a database config file
+        - Terminal: cd server
+        - Terminal: touch config/db.config.js
+        - Write and complete the following code in to your db.config.js
+        - ```js
+            module.exports = {
+            HOST: "localhost",
+            USER: "ENTER YOUR MYSQL USERNAME - this is 'root' as default",
+            PASSWORD: "ENTER YOUR MYSQL PASSWORD",
+            DB: "flights"
+            };```
 
 3 Start the Server (Node.js)
 - terminal: cd server
@@ -62,7 +73,29 @@ SETUP
 - terminal: npm start
 - View the react app in the [browser](http://localhost:3000/)
 
-
-
-
-
+MY PROCESS: 
+- Relearned MySQL and installed it
+- Built a test app to practice implementing MySQL into a node.js backend
+    - Built the server to use Express, handle CORS and to run on port 8080.
+    - Built the MySQL database and configured it.
+    - Built the Flight constructor. 
+    - Built methods on the Flight constructor (models/flights.model.js) to handle the CRUD functionality to handle:
+        - Creating a flight and inserting it into the flights table in the flights database
+        - Getting one flight from the flights table.
+        - Getting all flights from the flights table.
+        - Update a flight object in the flights table.
+        - Deleting one flight from the flight table.
+        - Deleting all flights from the flights table. 
+    - Created a seeds_data.js file to:
+        - hold flight JSON data 
+        - Create flights table in the flights database
+        - Creating flight objects from our JSON data and saving flight objects to the flights table in our database.
+    - Created a reusable router.js file to handle endpoints for our app.  All restful routes and 3 custom routes: 
+        - to get back all    departing flights
+        - to get back all 
+        arriving flights
+        - to get back one flight by flight number.
+    - Created a flight controller to handle the requests and responses from the client.
+    - TESTING
+    - Used Insomnia and mySQL workbench to test all created endpoints were working before building the frontend. 
+- Used what I learned from building the test app to create the server for AiportX_app but refactored the Flight constructor to handle the full JSON data.

@@ -9,8 +9,9 @@ const Flight = function (flight) {
     this.date = flight.date;
 };
 
-// Prototype Methods 
+// Prototype Methods to give the flight objects methods to perform CRUD actions within the flights table in our flights database. 
 
+//CREATE
 Flight.create = (newFlight, result) => {
     sql.query("INSERT INTO flights SET ?", newFlight, (err, res) => {
         if (err) {
@@ -24,6 +25,7 @@ Flight.create = (newFlight, result) => {
     });
 };
 
+//GET ONE
 Flight.findById = (id, result) => {
     sql.query(`SELECT * FROM flights WHERE id = ${id}`, (err, res) => {
         if (err) {
@@ -43,6 +45,7 @@ Flight.findById = (id, result) => {
     });
 };
 
+//GET ALL
 Flight.getAll = (departure, result) => {
     let query = "SELECT * FROM flights";
 
@@ -62,6 +65,7 @@ Flight.getAll = (departure, result) => {
     });
 };
 
+//Update
 Flight.updateById = (id, flight, result) => {
     sql.query(
         "UPDATE flights SET title = ?, description = ?, published = ? WHERE id = ?",
@@ -85,6 +89,7 @@ Flight.updateById = (id, flight, result) => {
     );
 };
 
+// DELETE ONE
 Flight.remove = (id, result) => {
     sql.query("DELETE FROM flights WHERE id = ?", id, (err, res) => {
         if (err) {
@@ -104,6 +109,7 @@ Flight.remove = (id, result) => {
     });
 };
 
+// DELETE ALL
 Flight.removeAll = result => {
     sql.query("DELETE FROM flights", (err, res) => {
         if (err) {
