@@ -3,16 +3,36 @@ const sql = require("../db/db.js");
 // Constructor Function
 
 const Flight = function (flight) {
-    this.flightNo = flight.flightNo;
-    this.departure = flight.departure;
-    this.destination = flight.destination;
-    this.date = flight.date;
+    this.FlightNo = flight.FlightNo;
+    this.Date = flight.Date;
+    this.Time = flight.Time;
+    this.ArrDep = flight.ArrDep;
+    this.PortOfCallA = flight.PortOfCallA;
+    this.Status = flight.Status;
+    this.OtherInfo = flight.OtherInfo;
+    this.Additional = flight.Additional;
+    this.Airline = flight.Airline;
+    this.Image = flight.Image;
+    this.ArrHall = flight.ArrHall;
 };
 
 // Prototype Methods to give the flight objects methods to perform CRUD actions within the flights table in our flights database. 
 
 //CREATE
 Flight.create = (newFlight, result) => {
+
+    //Format DATE to be handled by SQL DATE field, "03\/01\/2017" = '2017-03-01'
+    const date = newFlight["Date"]
+    const [month, day, year] = date.split("/")
+    const formattedDate = `${year}-${month}-${day}`
+    newFlight["Date"] = formattedDate;
+
+    //Format TIME to be handled by SQL TIME field, "12:30" = "12:30:00"
+    const time = newFlight["Time"];
+    const [hours, minutes] = time.split(":");
+    const formattedTime = `${hours}:${minutes}:00`;
+    newFlight["Time"] = formattedTime;
+
     sql.query("INSERT INTO flights SET ?", newFlight, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -20,14 +40,14 @@ Flight.create = (newFlight, result) => {
             return;
         }
 
-        console.log("created flight: ", { id: res.insertId, ...newFlight });
-        result(null, { id: res.insertId, ...newFlight });
+        console.log("created flight: ", newFlight);
+        result(null, newFlight);
     });
 };
 
 //GET ONE
-Flight.findById = (id, result) => {
-    sql.query(`SELECT * FROM flights WHERE id = ${id}`, (err, res) => {
+Flight.findById = (FlightNo, result) => {
+    sql.query("SELECT * FROM flights WHERE FlightNo = ?", FlightNo, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -46,11 +66,15 @@ Flight.findById = (id, result) => {
 };
 
 //GET ALL
-Flight.getAll = (departure, result) => {
+Flight.getAll = (departures, arrivals, result) => {
     let query = "SELECT * FROM flights";
 
-    if (departure) {
-        query += ` WHERE departure LIKE '%${departure}%'`;
+    if (departures) {
+        query += `WHERE departure LIKE '%${departure}%'`;
+    }
+
+    if (arrivals) {
+        query += `WHERE departure LIKE '%${arrival}%'`;
     }
 
     sql.query(query, (err, res) => {
@@ -65,11 +89,13 @@ Flight.getAll = (departure, result) => {
     });
 };
 
+
+
 //Update
-Flight.updateById = (id, flight, result) => {
+Flight.updateById = (FlightNo, flight, result) => {
     sql.query(
-        "UPDATE flights SET title = ?, description = ?, published = ? WHERE id = ?",
-        [flight.title, flight.description, flight.published, id],
+        "UPDATE flights SET Date = ?, Time = ?, ArrDep = ?, PortOfCallA = ?, Status = ?, OtherInfo = ?, Additional = ?, Airline = ?, Image = ?, ArrHall = ? WHERE FlightNo = ?",
+        [flight.Date, flight.Time, flight.ArrDep, flight.PortOfCallA, flight.Status, flight.OtherInfo, flight.Additional, flight.Airline, flight.Image, flight.ArrHall, FlightNo],
         (err, res) => {
             if (err) {
                 console.log("error: ", err);
@@ -83,15 +109,15 @@ Flight.updateById = (id, flight, result) => {
                 return;
             }
 
-            console.log("updated flight: ", { id: id, ...flight });
-            result(null, { id: id, ...flight });
+            console.log("updated flight: ", flight );
+            result(null, flight);
         }
     );
 };
 
 // DELETE ONE
-Flight.remove = (id, result) => {
-    sql.query("DELETE FROM flights WHERE id = ?", id, (err, res) => {
+Flight.remove = (FlightNo, result) => {
+    sql.query("DELETE FROM flights WHERE FlightNo = ?", FlightNo, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
@@ -104,7 +130,7 @@ Flight.remove = (id, result) => {
             return;
         }
 
-        console.log("deleted flight with id: ", id);
+        console.log("deleted flight with FlightNo: ", FlightNo);
         result(null, res);
     });
 };
@@ -123,17 +149,33 @@ Flight.removeAll = result => {
     });
 };
 
-// Flight.getAllDepartingFlights = (result, departure) => {
-//   sql.query(`SELECT * FROM flights WHERE departure=${departure}`, (err, res) => {
-//     if (err) {
-//       console.log("error: ", err);
-//       result(null, err);
-//       return;
-//     }
+// GET ALL DEPARTING
+Flight.getAllDepartingFlights = (result) => {
+  sql.query('SELECT * FROM flights WHERE ArrDep = ?', 'D', (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
 
-//     console.log("flights: ", res);
-//     result(null, res);
-//   });
-// };
+    console.log("flights: ", res);
+    result(null, res);
+  });
+};
+
+// GET ALL ARRIVALS
+Flight.getAllArrivingFlights = (result) => {
+    sql.query('SELECT * FROM flights WHERE ArrDep = ?', 'A', (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+  
+      console.log("flights: ", res);
+      result(null, res);
+    });
+  };
+
 
 module.exports = Flight;

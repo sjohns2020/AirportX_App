@@ -29,9 +29,12 @@ Create a full stack app using React and Node.js to allow a user to view and filt
 ## Learnings
 
 - Using MySQL and implementing a relational database into a Node backend. I have used relational databases extensively in Django, Flask and Spring but have only used none relational databases like MongoDB in a node backend.
+- Finding right SQL fields - Varchar(10), Date and Time over DATETIME and formating these. 
+- Took a while to work out a but where I had to change the SHOW ONE route from `/api/flights/:id` to `/api/flights/flight/:id` so it allowed me to create a GET ALL DEPART?URES route `/api/flights/departures`
 - Scaleability 
     - Implemented a reusable router in the server providing restful routing to any table.  This means we can add new tables to our database (e.g. crew members, passengers) and with only a few lines of code we can reuse the same router. 
     - Used well-constructed Component hierarchy on the react app to easily extend the application, adding new filters or adding new components for crew members and passengers. 
+
 
 ---
 
@@ -43,21 +46,23 @@ Create a full stack app using React and Node.js to allow a user to view and filt
 - Check you have MySQL installed
     - ```sh 
         #terminal 
-        mysql -V```
+        mysql -V
+        ```
 - If it’s not installed
     - Installation instructions can be found [here](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/installing.html)
     - Mac - install with [Homebrew]()
 - Create the database locally
     - ```sh 
         #terminal
-        createdb flights```
+        createdb flights
+        ```
     - In the server create a database config file
         - ```sh 
             #terminal 
-            cd server```
-        - ```sh 
-            #terminal
-            touch config/db.config.js```
+            cd server
+
+            touch config/db.config.js
+            ```
         - Write and complete the following code in to your db.config.js
         - ```js
             // server/config/db.config.js
@@ -66,31 +71,32 @@ Create a full stack app using React and Node.js to allow a user to view and filt
             USER: "ENTER YOUR MYSQL USERNAME - this is 'root' as default",
             PASSWORD: "ENTER YOUR MYSQL PASSWORD",
             DB: "flights"
-            };```
+            };
+            ```
 
-3 Start the Server (Node.js)
+3 Start the Server and Run Seeds (Node.js)
 - ```sh 
     #terminal 
-    cd server```
-- ```sh 
-    #terminal
-    npm install```
-- ```sh 
-    #terminal
-    npm run server:dev```
-- view the API in the [browser](http://localhost:8080/api/flights)
+    cd server
+    
+    npm install
+
+    npm run seeds
+
+    npm run server:dev
+    ```
+- View the backend Node API in the [browser](http://localhost:8080/api/flights)
 
 4 Start the Client (React)
 - ```sh 
     #terminal
-    cd client ```
-- ```sh 
-    #terminal
-    npm i```
-- ```sh 
-    #terminal
-    npm start ```
-- View the react app in the [browser](http://localhost:3000/)
+    cd client
+
+    npm i
+
+    npm start
+    ```
+- View the frontend React app in the [browser](http://localhost:3000/)
 
 ---
 
