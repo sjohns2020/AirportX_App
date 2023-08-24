@@ -33,8 +33,8 @@ Learnings:
 
 - Using MySQL and implementing a relational database into a Node backend. I have used relational databases extensively in Django, Flask and Spring but have only used none relational databases like MongoDB in a node backend.
 - Scaleability 
-- - Implemented a reusable router in the server providing restful routing to any table.  This means we can add new tables to our database (e.g. crew members, passengers) and with only a few lines of code we can reuse the same router. 
-- - Used well-constructed Component hierarchy on the react app to easily extend the application, adding new filters or adding new components for crew members and passengers. 
+    - Implemented a reusable router in the server providing restful routing to any table.  This means we can add new tables to our database (e.g. crew members, passengers) and with only a few lines of code we can reuse the same router. 
+    - Used well-constructed Component hierarchy on the react app to easily extend the application, adding new filters or adding new components for crew members and passengers. 
 
 
 SETUP
@@ -43,12 +43,12 @@ SETUP
 
 2 Setup the Database 
 - Check you have MySQL installed
-- - terminal: mysql -V
+    - terminal: mysql -V
 - If it’s not installed
-- - Installation instructions can be found [here](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/installing.html)
-- - Mac - install with [Homebrew]()
+    - Installation instructions can be found [here](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/installing.html)
+    - Mac - install with [Homebrew]()
 - Create the database locally
-- - …Instructions to create database…
+    - …Instructions to create database…
 
 3 Start the Server (Node.js)
 - terminal: cd server
