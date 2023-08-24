@@ -8,7 +8,7 @@ Using the included flights.json file, create an API using Node.js, Express and M
 Errors should be caught and handled.
 The dates are strings in DD/MM/YYYY format. Is there a better solution?
 
-## MVP:
+### MVP:
 
 - A user should be able to view a list of all flights
 - A user should be able to view a list of all flight arrivals 
@@ -21,12 +21,12 @@ The dates are strings in DD/MM/YYYY format. Is there a better solution?
 
 
 
-## EXTENSIONS:
+### EXTENSIONS:
 
 - Refactor API to ensure it can be scaled if it were a production service
 - The dates are strings in DD/MM/YYYY format. Is there a better solution?
 
-ADVANCED EXTENSIONS:
+### ADVANCED EXTENSIONS:
 - Add Authentication
 - Add rate limiting to improve performance. 
 - Perfect the frontend styling.
