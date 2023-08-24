@@ -57,9 +57,7 @@ Create a full stack app using React and Node.js to allow a user to view and filt
         - ```sh 
             #terminal 
             cd server
-            ```
-        - ```sh 
-            #terminal
+
             touch config/db.config.js
             ```
         - Write and complete the following code in to your db.config.js
@@ -73,35 +71,29 @@ Create a full stack app using React and Node.js to allow a user to view and filt
             };
             ```
 
-3 Start the Server (Node.js)
+3 Start the Server and Run Seeds (Node.js)
 - ```sh 
     #terminal 
     cd server
-    ```
-- ```sh 
-    #terminal
+    
     npm install
-    ```
-- ```sh 
-    #terminal
+
+    npm run seeds
+
     npm run server:dev
     ```
-- view the API in the [browser](http://localhost:8080/api/flights)
+- View the backend Node API in the [browser](http://localhost:8080/api/flights)
 
 4 Start the Client (React)
 - ```sh 
     #terminal
-    cd client 
-    ```
-- ```sh 
-    #terminal
+    cd client
+
     npm i
+
+    npm start
     ```
-- ```sh 
-    #terminal
-    npm start 
-    ```
-- View the react app in the [browser](http://localhost:3000/)
+- View the frontend React app in the [browser](http://localhost:3000/)
 
 ---
 

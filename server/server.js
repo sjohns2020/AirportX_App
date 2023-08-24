@@ -1,8 +1,6 @@
 const express = require("express");
 const app = express();
 
-//Server.js 
-
 // Eliminating CORS issues
 const cors = require("cors")
 app.use(cors());
@@ -20,13 +18,13 @@ app.get("/", (req, res) => {
 const createRouter = require("./routes/router.js")
 
 
-// Create a flights Enpoint Router
+// Create a flights Enpoint Router - open to extension if other tables are in the database
 const flights = require("./controllers/flight.controller.js");
 const flightsRouter = createRouter(flights);
 app.use('/api/flights', flightsRouter);
 
 
-// set port, listen for requests
+// sets port and listens for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);

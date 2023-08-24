@@ -3,10 +3,17 @@ const sql = require("../db/db.js");
 // Constructor Function
 
 const Flight = function (flight) {
-    this.flightNo = flight.flightNo;
-    this.departure = flight.departure;
-    this.destination = flight.destination;
-    this.date = flight.date;
+    this.FlightNo = flight.FlightNo;
+    this.Date = flight.Date;
+    this.Time = flight.Time;
+    this.ArrDep = flight.ArrDep;
+    this.PortOfCallA = flight.PortOfCallA;
+    this.Status = flight.Status;
+    this.OtherInfo = flight.OtherInfo;
+    this.Additional = flight.Additional;
+    this.Airline = flight.Airline;
+    this.Image = flight.Image;
+    this.ArrHall = flight.ArrHall;
 };
 
 // Prototype Methods to give the flight objects methods to perform CRUD actions within the flights table in our flights database. 
@@ -46,11 +53,15 @@ Flight.findById = (id, result) => {
 };
 
 //GET ALL
-Flight.getAll = (departure, result) => {
+Flight.getAll = (departure, arrival, result) => {
     let query = "SELECT * FROM flights";
 
     if (departure) {
-        query += ` WHERE departure LIKE '%${departure}%'`;
+        query += `WHERE departure LIKE '%${departure}%'`;
+    }
+
+    if (arrival) {
+        query += `WHERE departure LIKE '%${arrival}%'`;
     }
 
     sql.query(query, (err, res) => {
@@ -68,8 +79,8 @@ Flight.getAll = (departure, result) => {
 //Update
 Flight.updateById = (id, flight, result) => {
     sql.query(
-        "UPDATE flights SET title = ?, description = ?, published = ? WHERE id = ?",
-        [flight.title, flight.description, flight.published, id],
+        "UPDATE flights SET FlightNo = ?, Date = ?, Time = ?, ArrDep = ?, PortOfCallA = ?, Status = ?, OtherInfo = ?, Additional = ?, Airline = ?, Image = ?, ArrHall = ? WHERE id = ?",
+        [flight.FlightNo, flight.Date, flight.Time, flight.ArrDep, flight.PortOfCallA, flight.Status, flight.OtherInfo, flight.Additional, flight.Airline, flight.Image, flight.ArrHall, id],
         (err, res) => {
             if (err) {
                 console.log("error: ", err);
