@@ -1,4 +1,6 @@
-BRIEF - AirportX_App
+# AirportX_App
+
+## BRIEF:
 
 Using the included flights.json file, create an API using Node.js, Express and MySQL.  Also, create a simple React app to call the API and display the flights in a table that can be filtered.
 
@@ -6,7 +8,7 @@ Using the included flights.json file, create an API using Node.js, Express and M
 Errors should be caught and handled.
 The dates are strings in DD/MM/YYYY format. Is there a better solution?
 
-MVP:
+## MVP:
 
 - A user should be able to view a list of all flights
 - A user should be able to view a list of all flight arrivals 
@@ -19,7 +21,7 @@ MVP:
 
 
 
-EXTENSIONS:
+## EXTENSIONS:
 
 - Refactor API to ensure it can be scaled if it were a production service
 - The dates are strings in DD/MM/YYYY format. Is there a better solution?
@@ -29,15 +31,18 @@ ADVANCED EXTENSIONS:
 - Add rate limiting to improve performance. 
 - Perfect the frontend styling.
 
-Learnings:
+---
+
+## Learnings:
 
 - Using MySQL and implementing a relational database into a Node backend. I have used relational databases extensively in Django, Flask and Spring but have only used none relational databases like MongoDB in a node backend.
 - Scaleability 
     - Implemented a reusable router in the server providing restful routing to any table.  This means we can add new tables to our database (e.g. crew members, passengers) and with only a few lines of code we can reuse the same router. 
     - Used well-constructed Component hierarchy on the react app to easily extend the application, adding new filters or adding new components for crew members and passengers. 
 
+---
 
-SETUP
+## SETUP + INSTALLATION
 
 1 Git clone this repo locally.
 
@@ -75,7 +80,7 @@ SETUP
 
 ---
 
-MY PROCESS: 
+## MY PROCESS: 
 - Relearned MySQL and installed it
 - Built a test app to practice implementing MySQL into a node.js backend
     - Built the server to use Express, handle CORS and to run on port 8080.
