@@ -73,6 +73,8 @@ SETUP
 - terminal: npm start
 - View the react app in the [browser](http://localhost:3000/)
 
+---
+
 MY PROCESS: 
 - Relearned MySQL and installed it
 - Built a test app to practice implementing MySQL into a node.js backend
