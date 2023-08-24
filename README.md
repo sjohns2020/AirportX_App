@@ -43,21 +43,25 @@ Create a full stack app using React and Node.js to allow a user to view and filt
 - Check you have MySQL installed
     - ```sh 
         #terminal 
-        mysql -V```
+        mysql -V
+        ```
 - If it’s not installed
     - Installation instructions can be found [here](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/installing.html)
     - Mac - install with [Homebrew]()
 - Create the database locally
     - ```sh 
         #terminal
-        createdb flights```
+        createdb flights
+        ```
     - In the server create a database config file
         - ```sh 
             #terminal 
-            cd server```
+            cd server
+            ```
         - ```sh 
             #terminal
-            touch config/db.config.js```
+            touch config/db.config.js
+            ```
         - Write and complete the following code in to your db.config.js
         - ```js
             // server/config/db.config.js
@@ -66,30 +70,37 @@ Create a full stack app using React and Node.js to allow a user to view and filt
             USER: "ENTER YOUR MYSQL USERNAME - this is 'root' as default",
             PASSWORD: "ENTER YOUR MYSQL PASSWORD",
             DB: "flights"
-            };```
+            };
+            ```
 
 3 Start the Server (Node.js)
 - ```sh 
     #terminal 
-    cd server```
+    cd server
+    ```
 - ```sh 
     #terminal
-    npm install```
+    npm install
+    ```
 - ```sh 
     #terminal
-    npm run server:dev```
+    npm run server:dev
+    ```
 - view the API in the [browser](http://localhost:8080/api/flights)
 
 4 Start the Client (React)
 - ```sh 
     #terminal
-    cd client ```
+    cd client 
+    ```
 - ```sh 
     #terminal
-    npm i```
+    npm i
+    ```
 - ```sh 
     #terminal
-    npm start ```
+    npm start 
+    ```
 - View the react app in the [browser](http://localhost:3000/)
 
 ---
