@@ -20,6 +20,20 @@ const Flight = function (flight) {
 
 //CREATE
 Flight.create = (newFlight, result) => {
+
+    //Format DATE and TIME to be handled by SQL DATE and TIME field
+
+    //Format DATE to be handled by SQL DATE field, "03\/01\/2017" = '2017-03-01'
+    const date = newFlight["Date"]
+    const [month, day, year] = date.split("/")
+    const formattedDate = `${year}-${month}-${day}`
+    newFlight["Date"] = formattedDate;
+    //Format TIME to be handled by SQL TIME field, "12:30" = "12:30:00"
+    const time = newFlight["Time"];
+    const [hours, minutes] = time.split(":");
+    const formattedTime = `${hours}:${minutes}:00`;
+    newFlight["Time"] = formattedTime;
+
     sql.query("INSERT INTO flights SET ?", newFlight, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -53,14 +67,14 @@ Flight.findById = (id, result) => {
 };
 
 //GET ALL
-Flight.getAll = (departure, arrival, result) => {
+Flight.getAll = (departures, arrivals, result) => {
     let query = "SELECT * FROM flights";
 
-    if (departure) {
+    if (departures) {
         query += `WHERE departure LIKE '%${departure}%'`;
     }
 
-    if (arrival) {
+    if (arrivals) {
         query += `WHERE departure LIKE '%${arrival}%'`;
     }
 
@@ -75,6 +89,20 @@ Flight.getAll = (departure, arrival, result) => {
         result(null, res);
     });
 };
+
+{
+    "FlightNo": "AF1686",
+    "Date": "2017-03-01",
+    "Time": "12:30:00",
+    "ArrDep": "D",
+    "PortOfCallA": "PARIS C D G",
+    "Status": "LANDED 1323",
+    "OtherInfo": "NOW ON STAND",
+    "Additional": "Baggage at carousel 2",
+    "Airline": "Air France",
+    "Image": "https://s3-eu-west-1.amazonaws.com/ediassets/img/airlines/AF.jpg",
+    "ArrHall": "International"
+  }
 
 //Update
 Flight.updateById = (id, flight, result) => {

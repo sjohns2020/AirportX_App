@@ -13,10 +13,17 @@ exports.create = (req, res) => {
   
     // Create a Flight
     const flight = new Flight({
-      flightNo: req.body.flightNo,
-      departure: req.body.departure,
-      destination: req.body.destination,
-      date: req.body.date
+      FlightNo: req.body.FlightNo,
+      Date: req.body.Date,
+      Time: req.body.Time,
+      ArrDep: req.body.ArrDep,
+      PortOfCallA: req.body.PortOfCallA,
+      Status: req.body.Status,
+      OtherInfo: req.body.OtherInfo,
+      Additional: req.body.Additional,
+      Airline: req.body.Airline,
+      Image: req.body.Image,
+      ArrHall: req.body.ArrHall
     });
   
     // Save Flight in the database
@@ -33,9 +40,10 @@ exports.create = (req, res) => {
 // Retrieve all Flights from the database (with condition).
 exports.findAll = (req, res) => {
 
-    const departure = req.query.departure;
+    const departures = req.query.departures;
+    const arrivals = req.query.arrivals;
   
-    Flight.getAll(departure, (err, data) => {
+    Flight.getAll(departures, arrivals, (err, data) => {
       if (err)
         res.status(500).send({
           message:

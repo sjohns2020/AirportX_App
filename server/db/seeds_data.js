@@ -45,21 +45,6 @@ const flightsData = [
 ];
 
 
-// Format DATE and TIME to be handled by SQL DATE field
-flightsData.forEach((flight) => {
-  //Format DATE, "03\/01\/2017" = '2017-03-01'
-  const date = flight["Date"] 
-  const [month, day, year] = date.split("/")
-  const formattedDate = `${year}-${month}-${day}`
-  flight["Date"] = formattedDate
-  //Format TIME, "12:30" = 
-  const time = flight["Time"];
-  const [hours, minutes] = time.split(":");
-  const formattedTime = `${hours}:${minutes}:00`;
-  flight["Time"] = formattedTime;
-})
-
-
 // Drop the flights table if it already exists exists (Stops duplication when seeds file is run)
 db.query("DROP TABLE IF EXISTS flights", (err) => {
   if (err) throw err;
