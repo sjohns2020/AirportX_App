@@ -22,6 +22,9 @@ const createRouter = require("./routes/router.js")
 const flights = require("./controllers/flight.controller.js");
 const flightsRouter = createRouter(flights);
 app.use('/api/flights', flightsRouter);
+//Bespoke routes for flights
+//Departures
+// app.use('/api/flights/departures', flights.findAllDepartures)
 
 
 // sets port and listens for requests

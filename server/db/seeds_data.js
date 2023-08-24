@@ -33,7 +33,7 @@ const flightsData = [
     "FlightNo": "AF1686",
     "Date": "03\/01\/2017",
     "Time": "12:30",
-    "ArrDep": "A",
+    "ArrDep": "D",
     "PortOfCallA": "PARIS C D G",
     "Status": "LANDED 1323",
     "OtherInfo": "NOW ON STAND",
@@ -53,11 +53,10 @@ db.query("DROP TABLE IF EXISTS flights", (err) => {
   // Create the flights table
   db.query(
     `CREATE TABLE flights(
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      FlightNo VARCHAR(10),
+      FlightNo VARCHAR(10) PRIMARY KEY,
       Date DATE NOT NULL,
       Time TIME NOT NULL,
-      ArrDep CHAR(1) NOT NULL,
+      ArrDep CHAR NOT NULL,
       PortOfCallA VARCHAR(255) NOT NULL,
       Status VARCHAR(255) NOT NULL,
       OtherInfo VARCHAR(255),

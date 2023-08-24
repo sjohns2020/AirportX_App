@@ -41,14 +41,14 @@ Flight.create = (newFlight, result) => {
             return;
         }
 
-        console.log("created flight: ", { id: res.insertId, ...newFlight });
-        result(null, { id: res.insertId, ...newFlight });
+        console.log("created flight: ", newFlight);
+        result(null, newFlight);
     });
 };
 
 //GET ONE
-Flight.findById = (id, result) => {
-    sql.query(`SELECT * FROM flights WHERE id = ${id}`, (err, res) => {
+Flight.findById = (FlightNo, result) => {
+    sql.query("SELECT * FROM flights WHERE FlightNo = ?", FlightNo, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -90,25 +90,13 @@ Flight.getAll = (departures, arrivals, result) => {
     });
 };
 
-{
-    "FlightNo": "AF1686",
-    "Date": "2017-03-01",
-    "Time": "12:30:00",
-    "ArrDep": "D",
-    "PortOfCallA": "PARIS C D G",
-    "Status": "LANDED 1323",
-    "OtherInfo": "NOW ON STAND",
-    "Additional": "Baggage at carousel 2",
-    "Airline": "Air France",
-    "Image": "https://s3-eu-west-1.amazonaws.com/ediassets/img/airlines/AF.jpg",
-    "ArrHall": "International"
-  }
+
 
 //Update
-Flight.updateById = (id, flight, result) => {
+Flight.updateById = (FlightNo, flight, result) => {
     sql.query(
-        "UPDATE flights SET FlightNo = ?, Date = ?, Time = ?, ArrDep = ?, PortOfCallA = ?, Status = ?, OtherInfo = ?, Additional = ?, Airline = ?, Image = ?, ArrHall = ? WHERE id = ?",
-        [flight.FlightNo, flight.Date, flight.Time, flight.ArrDep, flight.PortOfCallA, flight.Status, flight.OtherInfo, flight.Additional, flight.Airline, flight.Image, flight.ArrHall, id],
+        "UPDATE flights SET Date = ?, Time = ?, ArrDep = ?, PortOfCallA = ?, Status = ?, OtherInfo = ?, Additional = ?, Airline = ?, Image = ?, ArrHall = ? WHERE FlightNo = ?",
+        [flight.Date, flight.Time, flight.ArrDep, flight.PortOfCallA, flight.Status, flight.OtherInfo, flight.Additional, flight.Airline, flight.Image, flight.ArrHall, FlightNo],
         (err, res) => {
             if (err) {
                 console.log("error: ", err);
@@ -122,15 +110,15 @@ Flight.updateById = (id, flight, result) => {
                 return;
             }
 
-            console.log("updated flight: ", { id: id, ...flight });
-            result(null, { id: id, ...flight });
+            console.log("updated flight: ", flight );
+            result(null, flight);
         }
     );
 };
 
 // DELETE ONE
-Flight.remove = (id, result) => {
-    sql.query("DELETE FROM flights WHERE id = ?", id, (err, res) => {
+Flight.remove = (FlightNo, result) => {
+    sql.query("DELETE FROM flights WHERE FlightNo = ?", FlightNo, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
@@ -143,7 +131,7 @@ Flight.remove = (id, result) => {
             return;
         }
 
-        console.log("deleted flight with id: ", id);
+        console.log("deleted flight with FlightNo: ", FlightNo);
         result(null, res);
     });
 };
@@ -162,17 +150,31 @@ Flight.removeAll = result => {
     });
 };
 
-// Flight.getAllDepartingFlights = (result, departure) => {
-//   sql.query(`SELECT * FROM flights WHERE departure=${departure}`, (err, res) => {
-//     if (err) {
-//       console.log("error: ", err);
-//       result(null, err);
-//       return;
-//     }
+Flight.getAllDepartingFlights = (result) => {
+  sql.query('SELECT * FROM flights WHERE ArrDep = ?', 'D', (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
 
-//     console.log("flights: ", res);
-//     result(null, res);
-//   });
-// };
+    console.log("flights: ", res);
+    result(null, res);
+  });
+};
+
+Flight.getAllArrivingFlights = (result) => {
+    sql.query('SELECT * FROM flights WHERE ArrDep = ?', 'A', (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+  
+      console.log("flights: ", res);
+      result(null, res);
+    });
+  };
+
 
 module.exports = Flight;

@@ -13,7 +13,7 @@ const createRouter = function (table) {
   router.get("/", table.findAll);
 
   // Retrieve a single Flight with id
-  router.get("/:id", table.findOne);
+  router.get("/flight/:id", table.findOne);
 
   // Update a Flight with id
   router.put("/:id", table.update);
@@ -24,14 +24,12 @@ const createRouter = function (table) {
   // Delete all Flights
   router.delete("/", table.deleteAll);
 
-  //Retrieve all arriving Flights
-  // router.get("/departures", table.findAllDeparting);
-
   //Retrieve all departing Flights
-  // router.get("/arrivals", table.findAllDeparting);
+  router.get("/departures", table.findAllDepartures);
 
-  //Retrieve Flight by flight number
-  // router.get("/:flightnumber", table.findAllDeparting);
+  //Retrieve all arriving Flights
+  router.get("/arrivals", table.findAllArrivals);
+
 
 
   return router;
