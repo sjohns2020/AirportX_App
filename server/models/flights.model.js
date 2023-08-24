@@ -21,13 +21,12 @@ const Flight = function (flight) {
 //CREATE
 Flight.create = (newFlight, result) => {
 
-    //Format DATE and TIME to be handled by SQL DATE and TIME field
-
     //Format DATE to be handled by SQL DATE field, "03\/01\/2017" = '2017-03-01'
     const date = newFlight["Date"]
     const [month, day, year] = date.split("/")
     const formattedDate = `${year}-${month}-${day}`
     newFlight["Date"] = formattedDate;
+
     //Format TIME to be handled by SQL TIME field, "12:30" = "12:30:00"
     const time = newFlight["Time"];
     const [hours, minutes] = time.split(":");
@@ -150,6 +149,7 @@ Flight.removeAll = result => {
     });
 };
 
+// GET ALL DEPARTING
 Flight.getAllDepartingFlights = (result) => {
   sql.query('SELECT * FROM flights WHERE ArrDep = ?', 'D', (err, res) => {
     if (err) {
@@ -163,6 +163,7 @@ Flight.getAllDepartingFlights = (result) => {
   });
 };
 
+// GET ALL ARRIVALS
 Flight.getAllArrivingFlights = (result) => {
     sql.query('SELECT * FROM flights WHERE ArrDep = ?', 'A', (err, res) => {
       if (err) {
