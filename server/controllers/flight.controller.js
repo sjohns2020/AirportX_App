@@ -25,6 +25,8 @@ exports.create = (req, res) => {
     ArrHall: req.body.ArrHall
   });
 
+
+
   // Save Flight in the database
   Flight.create(flight, (err, data) => {
     if (err)

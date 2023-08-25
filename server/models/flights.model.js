@@ -253,4 +253,5 @@ Flight.getAllArrivingFlights = (queries, result) => {
 };
 
 
+
 module.exports = Flight;
