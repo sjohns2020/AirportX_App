@@ -39,8 +39,18 @@ exports.create = (req, res) => {
 // Retrieve all Flights from the database (with condition).
 exports.findAll = (req, res) => {
 
+  // This code is to help prevent SQL injection attacks by erroring if illegal characters are used.
+  const onlyLettersPattern = /^[A-Za-z]+$/;
+  for (const key in req.query) {
+    const value = req.query[key];
+    if (!value.match(onlyLettersPattern)) {
+      return res.status(400).json({ err: `Invalid input in query parameter "${key}". "${value}" contains illegal characters. Only letters are allowed.` });
+    }
+  }
+
   // This route also accepts any query parameter so live data can be filetered
   Flight.getAll(req.query, (err, data) => {
+
     if (err)
       res.status(500).send({
         message:
@@ -132,6 +142,15 @@ exports.deleteAll = (req, res) => {
 // Find all Departing Flights
 exports.findAllDepartures = (req, res) => {
 
+  // This code is to help prevent SQL injection attacks by erroring if illegal characters are used.
+  const onlyLettersPattern = /^[A-Za-z]+$/;
+  for (const key in req.query) {
+    const value = req.query[key];
+    if (!value.match(onlyLettersPattern)) {
+      return res.status(400).json({ err: `Invalid input in query parameter "${key}". "${value}" contains illegal characters. Only letters are allowed.` });
+    }
+  }
+
   // This route also accepts any query parameter so live data can be filetered
   Flight.getAllDepartingFlights(req.query, (err, data) => {
     if (err) {
@@ -147,6 +166,15 @@ exports.findAllDepartures = (req, res) => {
 
 // Find all Arriving Flights
 exports.findAllArrivals = (req, res) => {
+
+  // This code is to help prevent SQL injection attacks by erroring if illegal characters are used.
+  const onlyLettersPattern = /^[A-Za-z]+$/;
+  for (const key in req.query) {
+    const value = req.query[key];
+    if (!value.match(onlyLettersPattern)) {
+      return res.status(400).json({ err: `Invalid input in query parameter "${key}". "${value}" contains illegal characters. Only letters are allowed.` });
+    }
+  }
 
   // This route also accepts any query parameter so live data can be filetered
   Flight.getAllArrivingFlights(req.query, (err, data) => {
