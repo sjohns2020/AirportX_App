@@ -41,23 +41,27 @@ Create a full stack app using React and Node.js to allow a user to view and filt
 
 # SETUP + INSTALLATION
 
-1 Git clone this repo locally.
+### 1 Git clone this repo locally
 
-2 Setup the Database 
+<br>
+
+### 2 Setup the Database 
 - Check you have MySQL installed
-    - ```sh 
+  ```sh 
         #terminal 
         mysql -V
-        ```
+    ```
 - If it’s not installed
     - Installation instructions can be found [here](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/installing.html)
     - Mac - install with [Homebrew]()
 - Create the database locally
-    -   ```sh 
+    -   Enter the MySQL shell
+        ```sh 
             #terminal
-            mysql -u <your_username> -p  # to enter the MySQL shell
+            mysql -u <your_username> -p 
         ```
-    -   ```sql 
+    -   Create the flights Database
+        ```sql 
             --MySQL shell
             CREATE DATABASE flights;
 
@@ -66,14 +70,15 @@ Create a full stack app using React and Node.js to allow a user to view and filt
             EXIT;
         ```
     - In the server create a database config file
-        - ```sh 
+        - Create a folder inside the server folder called config and create a file inside config called db.config.js
+            ```sh 
                 #terminal 
                 cd server
 
                 touch config/db.config.js
             ```
-        - Write and complete the following code in to your db.config.js
-        - ```js
+        - Drop this code in to db.config.js and add your MySQL username and password
+            ```js
             // server/config/db.config.js
             module.exports = {
             HOST: "localhost",
@@ -82,47 +87,57 @@ Create a full stack app using React and Node.js to allow a user to view and filt
             DB: "flights"
             };
             ```
+<br>
 
-3 Start the Server and Run Seeds (Node.js)
-- ```sh 
-    #terminal 
-    cd server
+### 3 Start the Server
+- Run the seeds file 
+    ```sh 
+        #terminal 
+        cd server
     
-    npm install
+        npm i
 
-    npm run seeds
+        npm run seeds
 
-    npm run server:dev
+        npm run server:dev
+    ```
+- Run the server 
+    ```sh 
+        #terminal
+        npm run server:dev
     ```
 - View the backend Node API in the [browser](http://localhost:8080/api/flights)
 
-4 Start the Client (React)
+<br>
+
+### 4 Start the Client (React)
 - ```sh 
-    #terminal
-    cd client
+        #terminal
+        cd client
 
-    npm i
+        npm i
 
-    npm start
+        npm start
     ```
 - View the frontend React app in the [browser](http://localhost:3000/)
 
 <br><br>
 
-# Flight API DOCUMENTATION
+# Flight API Documentation
+
+There is no authentication for the Flight API
 
 | Route | Endpoint | Desciption |
 |-----------------|-----------------|-----------------|
-| GET All Flights   | http://localhost:8080/api/flights  | Get All Flights |
-| Row 2, Col 1   | Row 2, Col 2   | Row 2, Col 3   |
-| Row 3, Col 1   | Row 3, Col 2   | Row 3, Col 3   |
-| Row 4, Col 1   | Row 4, Col 2   | Row 4, Col 3   |
-| Row 5, Col 1   | Row 5, Col 2   | Row 5, Col 3   |
-| Row 6, Col 1   | Row 6, Col 2   | Row 6, Col 3   |
-| Row 7, Col 1   | Row 7, Col 2   | Row 7, Col 3   |
-| Row 8, Col 1   | Row 8, Col 2   | Row 8, Col 3   |
-| Row 9, Col 1   | Row 9, Col 2   | Row 9, Col 3   |
-| Row 10, Col 1  | Row 10, Col 2  | Row 10, Col 3  |
+| Find All Flights   | http://localhost:8080/api/flights  | Returns all Flights, can also return a filtered list using one or multiple Query Parameters, e.g. /api/flights[?airline=british&arrHall=domestic](http://localhost:8080/api/flights?airline=british&arrHall=domestic) |
+| Find All Arrivals   | http://localhost:8080/api/flights/arrivals   | Returns all Arrival Flights, can also return a filtered list using one or multiple Query Parameters, e.g. flights/arrivals[?airline=british&arrHall=domestic](http://localhost:8080/api/flights/arrivals?airline=british&arrHall=domestic)   |
+| Find All Departures   | http://localhost:8080/api/flights/departures   | Returns all Departure Flights, can also return a filtered list using one or multiple Query Parameters, e.g. flights/departures[?airline=british&arrHall=domestic](http://localhost:8080/api/flights/departures?airline=british&arrHall=domestic)    |
+| Find Flight by FlightNo   | http://localhost:8080/api/flights/flight/BA8926  | Returns one Flight  |
+| Create Flight  | http://localhost:8080/api/flights  | Allows user to add a new flight  |
+| Update Flight  | http://localhost:8080/api/flights/EI3672  | Allows user to update a Flight  |
+| Delete One  | http://localhost:8080/api/flights/AF1686  | Allows user to delete a Flight   |
+| Delete All  | http://localhost:8080/api/flights  | Allows user to delete all Flights  |
+
 
 <br><br>
 

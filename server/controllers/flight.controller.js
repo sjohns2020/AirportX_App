@@ -61,6 +61,7 @@ exports.findAll = (req, res) => {
 };
 
 
+
 // Find a single Flight with a FlightNo
 exports.findOne = (req, res) => {
   Flight.findById(req.params.id, (err, data) => {
@@ -77,6 +78,8 @@ exports.findOne = (req, res) => {
     } else res.send(data);
   });
 };
+
+
 
 // Update a Flight identified by the id in the request
 exports.update = (req, res) => {
@@ -139,6 +142,8 @@ exports.deleteAll = (req, res) => {
   });
 };
 
+
+
 // Find all Departing Flights
 exports.findAllDepartures = (req, res) => {
 
@@ -162,6 +167,7 @@ exports.findAllDepartures = (req, res) => {
     }
   });
 };
+
 
 
 // Find all Arriving Flights

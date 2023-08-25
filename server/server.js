@@ -17,7 +17,7 @@ const flights = require("./controllers/flight.controller.js");
 const flightsRouter = createRouter(flights);
 app.use('/api/flights', flightsRouter);
 
-// Bespoke routes for flights outwith the reuseable RESTfull router
+// Bespoke routes for Flights outwith the reuseable RESTfull router
 // Retrieve all departing Flights
 app.use('/api/flights/departures', flights.findAllDepartures)
 // Retrieve all arriving Flights
