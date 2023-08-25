@@ -66,21 +66,36 @@ Flight.findById = (FlightNo, result) => {
 };
 
 //GET ALL
-Flight.getAll = (departures, arrivals, result) => {
-    let query = "SELECT * FROM flights";
+Flight.getAll = (queries, result) => {
+    console.log(queries);
+    
+    let query = "SELECT * FROM flights";  //basic query
 
-    if (departures) {
-        query += `WHERE departure LIKE '%${departure}%'`;
+    let conditions = []; // To store the individual conditions
+
+    // Allow extension to basic query if there are one or more additional filtering queries
+    for (let key in queries) {
+        const values = queries[key];
+        console.log(values)
+        if (values) { // if there are any additional filtering queries
+            const condition = (typeof values === 'string') 
+                ? `\`${key}\` LIKE '%${values}%'` // if there is only one filtering query (and therefore a string)
+                : values.map(value => `\`${key}\` LIKE '%${value}%'`).join(" OR "); // if there are multiple filtering queries
+            conditions.push(`(${condition})`);
+        }
     }
 
-    if (arrivals) {
-        query += `WHERE departure LIKE '%${arrival}%'`;
+    // Allows me to join additional query strings together with AND separating them am adding the WHERE clause right after my initial simple SQL query
+    if (conditions.length > 0) {
+        query += " WHERE " + conditions.join(" AND ");
     }
+
+    console.log("Query:" + query);
 
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
-            result(null, err);
+            result(err, null);
             return;
         }
 
@@ -88,6 +103,8 @@ Flight.getAll = (departures, arrivals, result) => {
         result(null, res);
     });
 };
+
+
 
 
 
@@ -109,7 +126,7 @@ Flight.updateById = (FlightNo, flight, result) => {
                 return;
             }
 
-            console.log("updated flight: ", flight );
+            console.log("updated flight: ", flight);
             result(null, flight);
         }
     );
@@ -151,31 +168,38 @@ Flight.removeAll = result => {
 
 // GET ALL DEPARTING
 Flight.getAllDepartingFlights = (result) => {
-  sql.query('SELECT * FROM flights WHERE ArrDep = ?', 'D', (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
 
-    console.log("flights: ", res);
-    result(null, res);
-  });
+    // ADD MORE QUERY STINGS HERE 
+
+    sql.query('SELECT * FROM flights WHERE ArrDep = ?', 'D', (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+        }
+
+        console.log("flights: ", res);
+        result(null, res);
+    });
 };
 
 // GET ALL ARRIVALS
 Flight.getAllArrivingFlights = (result) => {
+
+    // ADD MORE QUERY STINGS HERE 
+
+
     sql.query('SELECT * FROM flights WHERE ArrDep = ?', 'A', (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(null, err);
-        return;
-      }
-  
-      console.log("flights: ", res);
-      result(null, res);
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+        }
+
+        console.log("flights: ", res);
+        result(null, res);
     });
-  };
+};
 
 
 module.exports = Flight;

@@ -1,5 +1,4 @@
 // The controller handles the request and response from the client. 
-
 const Flight = require("../models/flights.model");
 
 // Create and Save a new Flight
@@ -40,10 +39,8 @@ exports.create = (req, res) => {
 // Retrieve all Flights from the database (with condition).
 exports.findAll = (req, res) => {
 
-  const departures = req.query.departures;
-  const arrivals = req.query.arrivals;
-
-  Flight.getAll(departures, arrivals, (err, data) => {
+  // This route also accepts any query parameter so live data can be filetered
+  Flight.getAll(req.query, (err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -52,11 +49,6 @@ exports.findAll = (req, res) => {
     else res.send(data);
   });
 };
-
-// find all departing
-// find all arriving
-// find by flight number
-
 
 
 // Find a single Flight with a FlightNo
@@ -140,20 +132,24 @@ exports.deleteAll = (req, res) => {
 // Find all Departing Flights
 exports.findAllDepartures = (req, res) => {
 
-  Flight.getAllDepartingFlights((err, data) => {
-    if (err)
+  // This route also accepts any query parameter so live data can be filetered
+  Flight.getAllDepartingFlights(req.query, (err, data) => {
+    if (err) {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving flights."
+        message: err.message || "Some error occurred while retrieving flights."
       });
-    else res.send(data);
+    } else {
+      res.send(data);
+    }
   });
 };
+
 
 // Find all Arriving Flights
 exports.findAllArrivals = (req, res) => {
 
-  Flight.getAllArrivingFlights((err, data) => {
+  // This route also accepts any query parameter so live data can be filetered
+  Flight.getAllArrivingFlights(req.query, (err, data) => {
     if (err)
       res.status(500).send({
         message:

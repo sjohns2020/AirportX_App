@@ -24,7 +24,7 @@ const flightsRouter = createRouter(flights);
 app.use('/api/flights', flightsRouter);
 //Bespoke routes for flights
 //Departures
-// app.use('/api/flights/departures', flights.findAllDepartures)
+//app.use('/api/flights/departures', flights.findAllDepartures)
 
 
 // sets port and listens for requests
