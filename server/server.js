@@ -8,23 +8,23 @@ app.use(cors());
 // Parse requests into json
 app.use(express.json());
 
-
 // API home route
 app.get("/", (req, res) => {
     res.json({ message: "Go to /api/flights to see all Flights." });
 });
 
-// Created a resueable router for any table in the database. 
-const createRouter = require("./routes/router.js")
-
-
-// Create a flights Enpoint Router - open to extension if other tables are in the database
+// Created a resueable RESTfull router for any table in the database if the database is extended. 
+const createRouter = require("./routes/router.js") 
 const flights = require("./controllers/flight.controller.js");
 const flightsRouter = createRouter(flights);
 app.use('/api/flights', flightsRouter);
-//Bespoke routes for flights
-//Departures
-//app.use('/api/flights/departures', flights.findAllDepartures)
+
+// Bespoke routes for flights outwith the reuseable RESTfull router
+// Retrieve all departing Flights
+app.use('/api/flights/departures', flights.findAllDepartures)
+// Retrieve all arriving Flights
+app.use('/api/flights/arrivals', flights.findAllArrivals)
+
 
 
 // sets port and listens for requests
