@@ -16,9 +16,9 @@ const Flight = function (flight) {
     this.ArrHall = flight.ArrHall;
 };
 
-// Prototype Methods to give the flight objects methods to perform CRUD actions within the flights table in our flights database. 
+// Methods to give the flight objects methods to perform CRUD actions within the flights table in our flights database. 
 
-//CREATE
+// CREATE
 Flight.create = (newFlight, result) => {
 
     //Format DATE to be handled by SQL DATE field, "03\/01\/2017" = '2017-03-01'
@@ -39,13 +39,12 @@ Flight.create = (newFlight, result) => {
             result(err, null);
             return;
         }
-
         console.log("created flight: ", newFlight);
         result(null, newFlight);
     });
 };
 
-//GET ONE
+// GET ONE
 Flight.findById = (FlightNo, result) => {
     sql.query("SELECT * FROM flights WHERE FlightNo = ?", FlightNo, (err, res) => {
         if (err) {
@@ -59,29 +58,30 @@ Flight.findById = (FlightNo, result) => {
             result(null, res[0]);
             return;
         }
-
         // not found Flight with the id
         result({ kind: "not_found" }, null);
     });
 };
 
-//GET ALL Flights ordered by date and time
+// GET ALL FLIGHTS
 Flight.getAll = (queries, result) => {
     console.log("QUERIES", queries);
 
     ////////////////BUILDING THE SQL QUERY////////////////
-    let query = "SELECT * FROM flights";  // Starting basic query to get all flights back
-    let conditions = []; // To store the individual conditions to chain on to the basic query
 
-    // Allow extension to basic query if there are one or more additional filtering queries
+    // Basic SQL Query
+    let query = "SELECT * FROM flights";
+    let conditions = []; // To store the individual conditions to chain on to the Basic SQL Query
+
+    // Allow extension to Basic SQL Query if there are one or more additional Query Parameters
     for (let key in queries) {
         const values = queries[key];
         console.log(values)
-        if (values) { // if there are any additional filtering queries
+        if (values) { // if there are any additional Query Parameters
             const condition = (typeof values === 'string')
-                ? `\`${key}\` LIKE '%${values}%'` // if there is only one filtering query (and therefore a string)
-                : values.map(value => `\`${key}\` LIKE '%${value}%'`).join(" OR "); // if there are multiple filtering queries
-                conditions.push(`(${condition})`);
+                ? `\`${key}\` LIKE '%${values}%'` // If there is only one Query Parameter (and therefore a string)
+                : values.map(value => `\`${key}\` LIKE '%${value}%'`).join(" OR "); // If there are multiple Query Parameters
+            conditions.push(`(${condition})`);
         }
     }
 
@@ -90,7 +90,7 @@ Flight.getAll = (queries, result) => {
         query += " WHERE " + conditions.join(" AND ");
     }
 
-    // Orders the output by date and then time (Had to format these to dates as the string format is not sortable)
+    // SORT the DATA by DATE and TIME (Had to format these to dates as the string format is not sortable)
     query += " ORDER BY STR_TO_DATE(`Date`, '%m/%d/%Y'), STR_TO_DATE(`Time`, '%H:%i')";
     console.log("Query:" + query);
     //////////////////////////////////////////////
@@ -107,11 +107,7 @@ Flight.getAll = (queries, result) => {
     });
 };
 
-
-
-
-
-//Update
+// UPDATE
 Flight.updateById = (FlightNo, flight, result) => {
     sql.query(
         "UPDATE flights SET Date = ?, Time = ?, ArrDep = ?, PortOfCallA = ?, Status = ?, OtherInfo = ?, Additional = ?, Airline = ?, Image = ?, ArrHall = ? WHERE FlightNo = ?",
@@ -155,7 +151,7 @@ Flight.remove = (FlightNo, result) => {
     });
 };
 
-// DELETE ALL
+// DELETE ALL FLIGHTS
 Flight.removeAll = result => {
     sql.query("DELETE FROM flights", (err, res) => {
         if (err) {
@@ -169,34 +165,38 @@ Flight.removeAll = result => {
     });
 };
 
-// GET ALL DEPARTING
+// GET ALL DEPARTING FLIGHTS
 Flight.getAllDepartingFlights = (queries, result) => {
 
-   ////////////////BUILDING THE SQL QUERY////////////////
-   let query = `SELECT * FROM flights WHERE ArrDep = 'D'`;  // Starting basic query to get all flights back
-   let conditions = []; // To store the individual conditions to chain on to the basic query
+    ////////////////BUILDING THE SQL QUERY////////////////
+    // Basic SQL Query
+    let query = `SELECT * FROM flights WHERE ArrDep = 'D'`;
 
-   // Allow extension to basic query if there are one or more additional filtering queries
-   for (let key in queries) {
-       const values = queries[key];
-       console.log(values)
-       if (values) { // if there are any additional filtering queries
-           const condition = (typeof values === 'string')
-               ? `\`${key}\` LIKE '%${values}%'` // if there is only one filtering query (and therefore a string)
-               : values.map(value => `\`${key}\` LIKE '%${value}%'`).join(" OR "); // if there are multiple filtering queries
-               conditions.push(`(${condition})`);
-       }
-   }
+    // If there are Query Parameters, this block handles them
+    let conditions = [];
 
-   // Allows me to join additional query strings together with AND separating them am adding the WHERE clause right after my initial simple SQL query
-   if (conditions.length > 0) {
-       query += " AND " + conditions.join(" AND ");
-   }
+    // Allow extension to the Basic SQL Query if there are one or more Query Parameters
+    for (let key in queries) {
+        const values = queries[key];
+        console.log(values)
+        if (values) { // if there are any additional Query Parameters
+            const condition = (typeof values === 'string')
+                ? `\`${key}\` LIKE '%${values}%'` // if there is only one Query Parameters (and therefore a string)
+                : values.map(value => `\`${key}\` LIKE '%${value}%'`).join(" OR "); // if there are multiple Query Parameters
+            conditions.push(`(${condition})`);
+        }
+    }
 
-   // Orders the output by date and then time (Had to format these to dates as the string format is not sortable)
-   query += " ORDER BY STR_TO_DATE(`Date`, '%m/%d/%Y'), STR_TO_DATE(`Time`, '%H:%i')";
-   console.log("Query:" + query);
-   //////////////////////////////////////////////
+    // Allows me to join additional Query Parameters together with AND right after my initial simple SQL query
+    if (conditions.length > 0) {
+        query += " AND " + conditions.join(" AND ");
+    }
+
+    // Orders the output by date and then time (Had to format these to dates as the string format is not sortable)
+    query += " ORDER BY STR_TO_DATE(`Date`, '%m/%d/%Y'), STR_TO_DATE(`Time`, '%H:%i')";
+    /////////////SQL QUERY IS NOW READY///////////////////
+
+    console.log("Query:" + query);
 
     sql.query(query, (err, res) => {
         if (err) {
@@ -209,34 +209,36 @@ Flight.getAllDepartingFlights = (queries, result) => {
     });
 };
 
-// GET ALL ARRIVALS
+// GET ALL ARRIVAL FLIGHTS
 Flight.getAllArrivingFlights = (queries, result) => {
 
-   ////////////////BUILDING THE SQL QUERY////////////////
-   let query = `SELECT * FROM flights WHERE ArrDep = 'A'`;  // Starting basic query to get all flights back
-   let conditions = []; // To store the individual conditions to chain on to the basic query
+    ////////////////BUILDING THE SQL QUERY////////////////
+    // Basic SQL Query
+    let query = `SELECT * FROM flights WHERE ArrDep = 'A'`;
+    let conditions = []; // To store the individual conditions to chain on to the Basic SQL Query
 
-   // Allow extension to basic query if there are one or more additional filtering queries
-   for (let key in queries) {
-       const values = queries[key];
-       console.log(values)
-       if (values) { // if there are any additional filtering queries
-           const condition = (typeof values === 'string')
-               ? `\`${key}\` LIKE '%${values}%'` // if there is only one filtering query (and therefore a string)
-               : values.map(value => `\`${key}\` LIKE '%${value}%'`).join(" OR "); // if there are multiple filtering queries
-               conditions.push(`(${condition})`);
-       }
-   }
+    // Allow extension to Basic SQL Query if there are one or more additional Query Parameters
+    for (let key in queries) {
+        const values = queries[key];
+        console.log(values)
+        if (values) { // If there are any additional Query Parameters
+            const condition = (typeof values === 'string')
+                ? `\`${key}\` LIKE '%${values}%'` // If there is only one Query Parameter (and therefore a string)
+                : values.map(value => `\`${key}\` LIKE '%${value}%'`).join(" OR "); // If there are multiple Query Parameters
+            conditions.push(`(${condition})`);
+        }
+    }
 
-   // Allows me to join additional query strings together with AND separating them am adding the WHERE clause right after my initial simple SQL query
-   if (conditions.length > 0) {
-       query += " AND " + conditions.join(" AND ");
-   }
+    // Allows me to join additional query strings together with AND right after my initial simple SQL query
+    if (conditions.length > 0) {
+        query += " AND " + conditions.join(" AND ");
+    }
 
-   // Orders the output by date and then time (Had to format these to dates as the string format is not sortable)
-   query += " ORDER BY STR_TO_DATE(`Date`, '%m/%d/%Y'), STR_TO_DATE(`Time`, '%H:%i')";
-   console.log("Query:" + query);
-   //////////////////////////////////////////////
+    // Orders the output by date and then time (Had to format these to dates as the string format is not sortable)
+    query += " ORDER BY STR_TO_DATE(`Date`, '%m/%d/%Y'), STR_TO_DATE(`Time`, '%H:%i')";
+    //////////////////////////////////////////////
+
+    console.log("Query:" + query);
 
     sql.query(query, (err, res) => {
         if (err) {

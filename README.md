@@ -24,21 +24,22 @@ Create a full stack app using React and Node.js to allow a user to view and filt
 - Add rate limiting to improve performance. 
 - Perfect the frontend styling.
 
----
+<br><br>
 
-## Learnings
+# Learnings
 
 - Using MySQL and implementing a relational database into a Node backend. I have used relational databases extensively in Django, Flask and Spring but have only used none relational databases like MongoDB in a node backend.
 - Finding right SQL fields - Varchar(10), Date and Time over DATETIME and formating these. 
-- Took a while to work out a but where I had to change the SHOW ONE route from `/api/flights/:id` to `/api/flights/flight/:id` so it allowed me to create a GET ALL DEPART?URES route `/api/flights/departures`
-- Scaleability 
+- Took a while to work out a but where I had to change the SHOW ONE route from `/api/flights/:id` to `/api/flights/flight/:id` so it allowed me to create a GET ALL DEPARTURES route `/api/flights/departures`
+- Learned how to implement safeguards against SQL injection attacks in Node.js and MySQL
+- Scaleability:
     - Implemented a reusable router in the server providing restful routing to any table.  This means we can add new tables to our database (e.g. crew members, passengers) and with only a few lines of code we can reuse the same router. 
     - Used well-constructed Component hierarchy on the react app to easily extend the application, adding new filters or adding new components for crew members and passengers. 
 
 
----
+<br><br>
 
-## SETUP + INSTALLATION
+# SETUP + INSTALLATION
 
 1 Git clone this repo locally.
 
@@ -52,16 +53,24 @@ Create a full stack app using React and Node.js to allow a user to view and filt
     - Installation instructions can be found [here](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/installing.html)
     - Mac - install with [Homebrew]()
 - Create the database locally
-    - ```sh 
-        #terminal
-        createdb flights
+    -   ```sh 
+            #terminal
+            mysql -u <your_username> -p  # to enter the MySQL shell
+        ```
+    -   ```sql 
+            --MySQL shell
+            CREATE DATABASE flights;
+
+            SHOW DATABASES;
+
+            EXIT;
         ```
     - In the server create a database config file
         - ```sh 
-            #terminal 
-            cd server
+                #terminal 
+                cd server
 
-            touch config/db.config.js
+                touch config/db.config.js
             ```
         - Write and complete the following code in to your db.config.js
         - ```js
@@ -98,9 +107,26 @@ Create a full stack app using React and Node.js to allow a user to view and filt
     ```
 - View the frontend React app in the [browser](http://localhost:3000/)
 
----
+<br><br>
 
-## My Process
+# Flight API DOCUMENTATION
+
+| Route | Endpoint | Desciption |
+|-----------------|-----------------|-----------------|
+| GET All Flights   | http://localhost:8080/api/flights  | Get All Flights |
+| Row 2, Col 1   | Row 2, Col 2   | Row 2, Col 3   |
+| Row 3, Col 1   | Row 3, Col 2   | Row 3, Col 3   |
+| Row 4, Col 1   | Row 4, Col 2   | Row 4, Col 3   |
+| Row 5, Col 1   | Row 5, Col 2   | Row 5, Col 3   |
+| Row 6, Col 1   | Row 6, Col 2   | Row 6, Col 3   |
+| Row 7, Col 1   | Row 7, Col 2   | Row 7, Col 3   |
+| Row 8, Col 1   | Row 8, Col 2   | Row 8, Col 3   |
+| Row 9, Col 1   | Row 9, Col 2   | Row 9, Col 3   |
+| Row 10, Col 1  | Row 10, Col 2  | Row 10, Col 3  |
+
+<br><br>
+
+# My Process
 - Relearned MySQL and installed it
 - Built a test app to practice implementing MySQL into a node.js backend
     - Built the server to use Express, handle CORS and to run on port 8080.
