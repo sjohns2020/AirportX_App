@@ -67,10 +67,10 @@ Flight.findById = (FlightNo, result) => {
 
 //GET ALL Flights ordered by date and time
 Flight.getAll = (queries, result) => {
-    console.log(queries);
+    console.log("QUERIES", queries);
 
+    ////////////////BUILDING THE SQL QUERY////////////////
     let query = "SELECT * FROM flights";  // Starting basic query to get all flights back
-
     let conditions = []; // To store the individual conditions to chain on to the basic query
 
     // Allow extension to basic query if there are one or more additional filtering queries
@@ -92,8 +92,8 @@ Flight.getAll = (queries, result) => {
 
     // Orders the output by date and then time (Had to format these to dates as the string format is not sortable)
     query += " ORDER BY STR_TO_DATE(`Date`, '%m/%d/%Y'), STR_TO_DATE(`Time`, '%H:%i')";
-
     console.log("Query:" + query);
+    //////////////////////////////////////////////
 
     sql.query(query, (err, res) => {
         if (err) {
@@ -170,29 +170,75 @@ Flight.removeAll = result => {
 };
 
 // GET ALL DEPARTING
-Flight.getAllDepartingFlights = (result) => {
+Flight.getAllDepartingFlights = (queries, result) => {
 
-    // ADD MORE QUERY STINGS HERE 
+   ////////////////BUILDING THE SQL QUERY////////////////
+   let query = `SELECT * FROM flights WHERE ArrDep = 'D'`;  // Starting basic query to get all flights back
+   let conditions = []; // To store the individual conditions to chain on to the basic query
 
-    sql.query("SELECT * FROM flights WHERE ArrDep = ? ORDER BY STR_TO_DATE(`Date`, '%m/%d/%Y'), STR_TO_DATE(`Time`, '%H:%i')", 'D', (err, res) => {
+   // Allow extension to basic query if there are one or more additional filtering queries
+   for (let key in queries) {
+       const values = queries[key];
+       console.log(values)
+       if (values) { // if there are any additional filtering queries
+           const condition = (typeof values === 'string')
+               ? `\`${key}\` LIKE '%${values}%'` // if there is only one filtering query (and therefore a string)
+               : values.map(value => `\`${key}\` LIKE '%${value}%'`).join(" OR "); // if there are multiple filtering queries
+               conditions.push(`(${condition})`);
+       }
+   }
+
+   // Allows me to join additional query strings together with AND separating them am adding the WHERE clause right after my initial simple SQL query
+   if (conditions.length > 0) {
+       query += " AND " + conditions.join(" AND ");
+   }
+
+   // Orders the output by date and then time (Had to format these to dates as the string format is not sortable)
+   query += " ORDER BY STR_TO_DATE(`Date`, '%m/%d/%Y'), STR_TO_DATE(`Time`, '%H:%i')";
+   console.log("Query:" + query);
+   //////////////////////////////////////////////
+
+    sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
             return;
         }
-
         console.log("flights: ", res);
         result(null, res);
     });
 };
 
 // GET ALL ARRIVALS
-Flight.getAllArrivingFlights = (result) => {
+Flight.getAllArrivingFlights = (queries, result) => {
 
-    // ADD MORE QUERY STINGS HERE 
+   ////////////////BUILDING THE SQL QUERY////////////////
+   let query = `SELECT * FROM flights WHERE ArrDep = 'A'`;  // Starting basic query to get all flights back
+   let conditions = []; // To store the individual conditions to chain on to the basic query
 
+   // Allow extension to basic query if there are one or more additional filtering queries
+   for (let key in queries) {
+       const values = queries[key];
+       console.log(values)
+       if (values) { // if there are any additional filtering queries
+           const condition = (typeof values === 'string')
+               ? `\`${key}\` LIKE '%${values}%'` // if there is only one filtering query (and therefore a string)
+               : values.map(value => `\`${key}\` LIKE '%${value}%'`).join(" OR "); // if there are multiple filtering queries
+               conditions.push(`(${condition})`);
+       }
+   }
 
-    sql.query("SELECT * FROM flights WHERE ArrDep = ? ORDER BY STR_TO_DATE(`Date`, '%m/%d/%Y'), STR_TO_DATE(`Time`, '%H:%i')", 'A', (err, res) => {
+   // Allows me to join additional query strings together with AND separating them am adding the WHERE clause right after my initial simple SQL query
+   if (conditions.length > 0) {
+       query += " AND " + conditions.join(" AND ");
+   }
+
+   // Orders the output by date and then time (Had to format these to dates as the string format is not sortable)
+   query += " ORDER BY STR_TO_DATE(`Date`, '%m/%d/%Y'), STR_TO_DATE(`Time`, '%H:%i')";
+   console.log("Query:" + query);
+   //////////////////////////////////////////////
+
+    sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
