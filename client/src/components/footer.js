@@ -1,7 +1,8 @@
 const Footer = () => {
     return (
-        <footer class="footer">
-            <div className="nav-link">
+        <footer className="footer">
+            <h1>By Sean Johnson</h1>
+            {/* <div className="nav-link">
                 <a href="https://www.kayak.co.uk/"  target="_blank" rel="noreferrer"  >
                     <h1>Kayak</h1>
                 </a>
@@ -15,7 +16,7 @@ const Footer = () => {
                 <a href="/">
                     <h1>About</h1>
                 </a>
-            </div>
+            </div> */}
         </footer>
     );
 }

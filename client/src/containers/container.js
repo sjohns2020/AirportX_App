@@ -19,18 +19,29 @@ const Container = () => {
         setFlights(flights)
     }
 
+    // Get all Departures
+    const getDepartures = async () => {
+        const res = await fetch('http://localhost:8080/api/flights/departures')
+        const departures = await res.json()
+        setFlights(departures)
+    }
 
+    // Get all Arrivals
+    const getArrivals = async () => {
+        const res = await fetch('http://localhost:8080/api/flights/arrivals')
+        const arrivals = await res.json()
+        setFlights(arrivals)
+    }
 
-
-    return (
-        <div className="App">
-            <Header />
-            <main className="main">
-                <Main flights={flights} />
-            </main>
-            <Footer />
-        </div>
-    );
+return (
+    <div className="App">
+        <Header />
+        <main className="main">
+            <Main flights={flights} getDepartures={getDepartures} getArrivals={getArrivals} getFlights={getFlights} />
+        </main>
+        <Footer />
+    </div>
+);
 }
 
 export default Container;
