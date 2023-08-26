@@ -1,6 +1,5 @@
 const assert = require('assert');
 const Flight = require("../models/flights.model");
-const db = require("../db/db.js");
 
 describe('Flight', function () {
 
@@ -70,7 +69,4 @@ describe('Flight', function () {
 
 });
 
-db.end(err => {
-    if (err) throw err;
-    console.log("Database connection closed.");
-});
+
