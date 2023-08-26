@@ -5,7 +5,7 @@ const Header = () => {
         <header className="header">
             <h1 className="title-container">Flight Tracker</h1>
             <section>
-                <nav className="nav">
+                {/* <nav className="nav">
                     <div className="nav-link">
                         <a href="/">
                             <h1>Flights</h1>
@@ -16,7 +16,7 @@ const Header = () => {
                             <h1>Tracked Flights</h1>
                         </a>
                     </div>
-                </nav>
+                </nav> */}
                 <div className="logo-container">
                     <img className="logo" src={image} alt="Logo" />
                 </div>
