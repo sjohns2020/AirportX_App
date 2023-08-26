@@ -13,7 +13,7 @@ const createRouter = function (table) {
   router.get("/", table.findAll);
 
   // Retrieve a single Flight with id
-  router.get("/:id", table.findOne);
+  router.get("/flight/:id", table.findOne);
 
   // Update a Flight with id
   router.put("/:id", table.update);
