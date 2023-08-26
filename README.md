@@ -100,12 +100,18 @@ Create a full stack app using React and Node.js to allow a user to view and filt
 
         npm run server:dev
     ```
+- (Optional) Run Mocha and Chai tests to ensure the Flight model and API routes are working
+    ```sh 
+        #terminal
+        npm run tests
+    ```
 - Run the server 
     ```sh 
         #terminal
         npm run server:dev
     ```
 - View the backend Node API in the [browser](http://localhost:8080/api/flights)
+
 
 <br>
 
@@ -166,3 +172,5 @@ There is no authentication for the Flight API
     - TESTING
     - Used Insomnia and mySQL workbench to test all created endpoints were working before building the frontend. 
 - Used what I learned from building the test app to create the server for AiportX_app but refactored the Flight constructor to handle the full JSON data.
+- Added Mocha testing suite to unit test the Flight model
+- Added Chai testing suite to test requests to the API.

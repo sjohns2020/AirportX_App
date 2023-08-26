@@ -1,5 +1,4 @@
 const sql = require("../db/db.js");
-
 // Constructor Function
 
 const Flight = function (flight) {
@@ -58,6 +57,7 @@ Flight.findById = (FlightNo, result) => {
             result(null, res[0]);
             return;
         }
+    
         // not found Flight with the id
         result({ kind: "not_found" }, null);
     });
@@ -101,7 +101,7 @@ Flight.getAll = (queries, result) => {
             result(err, null);
             return;
         }
-
+   
         console.log("flights: ", res);
         result(null, res);
     });
@@ -124,7 +124,7 @@ Flight.updateById = (FlightNo, flight, result) => {
                 result({ kind: "not_found" }, null);
                 return;
             }
-
+         
             console.log("updated flight: ", flight);
             result(null, flight);
         }
@@ -145,7 +145,7 @@ Flight.remove = (FlightNo, result) => {
             result({ kind: "not_found" }, null);
             return;
         }
-
+        
         console.log("deleted flight with FlightNo: ", FlightNo);
         result(null, res);
     });
@@ -159,7 +159,7 @@ Flight.removeAll = result => {
             result(null, err);
             return;
         }
-
+        
         console.log(`deleted ${res.affectedRows} flights`);
         result(null, res);
     });
@@ -204,6 +204,7 @@ Flight.getAllDepartingFlights = (queries, result) => {
             result(null, err);
             return;
         }
+   
         console.log("flights: ", res);
         result(null, res);
     });
@@ -246,7 +247,7 @@ Flight.getAllArrivingFlights = (queries, result) => {
             result(null, err);
             return;
         }
-
+       
         console.log("flights: ", res);
         result(null, res);
     });
