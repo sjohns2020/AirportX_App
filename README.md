@@ -30,7 +30,6 @@ Create a full stack app using React and Node.js to allow a user to view and filt
 
 - Using MySQL and implementing a relational database into a Node backend. I have used relational databases extensively in Django, Flask and Spring but have only used none relational databases like MongoDB in a node backend.
 - Finding right SQL fields - Varchar(10), Date and Time over DATETIME and formating these. 
-- Took a while to work out a but where I had to change the SHOW ONE route from `/api/flights/:id` to `/api/flights/flight/:id` so it allowed me to create a GET ALL DEPARTURES route `/api/flights/departures`
 - Learned how to implement safeguards against SQL injection attacks in Node.js and MySQL
 - Scaleability:
     - Implemented a reusable router in the server providing restful routing to any table.  This means we can add new tables to our database (e.g. crew members, passengers) and with only a few lines of code we can reuse the same router. 
@@ -132,7 +131,7 @@ There is no authentication for the Flight API
 | Find All Flights   | http://localhost:8080/api/flights  | Returns all Flights, can also return a filtered list using one or multiple Query Parameters, e.g. /api/flights[?airline=british&arrHall=domestic](http://localhost:8080/api/flights?airline=british&arrHall=domestic) |
 | Find All Arrivals   | http://localhost:8080/api/flights/arrivals   | Returns all Arrival Flights, can also return a filtered list using one or multiple Query Parameters, e.g. flights/arrivals[?airline=british&arrHall=domestic](http://localhost:8080/api/flights/arrivals?airline=british&arrHall=domestic)   |
 | Find All Departures   | http://localhost:8080/api/flights/departures   | Returns all Departure Flights, can also return a filtered list using one or multiple Query Parameters, e.g. flights/departures[?airline=british&arrHall=domestic](http://localhost:8080/api/flights/departures?airline=british&arrHall=domestic)    |
-| Find Flight by FlightNo   | http://localhost:8080/api/flights/flight/BA8926  | Returns one Flight  |
+| Find Flight by FlightNo   | http://localhost:8080/api/flights/BA8926  | Returns one Flight  |
 | Create Flight  | http://localhost:8080/api/flights  | Allows user to add a new flight  |
 | Update Flight  | http://localhost:8080/api/flights/EI3672  | Allows user to update a Flight  |
 | Delete One  | http://localhost:8080/api/flights/AF1686  | Allows user to delete a Flight   |
