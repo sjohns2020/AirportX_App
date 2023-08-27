@@ -26,7 +26,7 @@
   flex: 1;
   background-color: #7e0b6e;
   color: white;
-  margin: 7em;
+  margin: 1em;
 }
 
 .logo-container {
@@ -82,11 +82,10 @@
 }
 
 .main {
-  margin: 3em;
-  /* padding-left: 2em; */
-  /* padding-right: 2em; */
+  margin: 2em;
   border-radius: 2em;
   border-top-left-radius: 0;
+  padding: 0.5em;
 }
 
 .main-headings {
@@ -94,8 +93,8 @@
 }
 
 .main-flights {
-  padding-right: 1em;
-  padding-left: 1em;
+  padding-right: 2em;
+  padding-left: 2em;
 }
 
 .main-flights-selected {
@@ -104,25 +103,26 @@
   color: black;
   /* height: 2em; */
   transition: 0.2s;
-  padding-right: 1em;
-  padding-left: 1em;
+  padding-right: 2em;
+  padding-left: 2em;
 
 }
 
-.table-search-container {
+/* .table-search-container {
   display: flex;
   margin:0;
   justify-content: center;
-}
+} */
 
 .table-container {
   width: 100%;
-  height: 50vh;
+  height: 100vh;
   overflow: scroll;
+  border-radius: 2em;
+  border-top-left-radius: 0;
 }
 
 .table {
-  /* width: 100%; */
   font-size: 1.1em;
   color: black;
   background: white;
@@ -154,8 +154,25 @@
 
 .portOfCallA {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   width: 20em;
+  margin: 0;
+  padding: 0;
+}
+
+.flightDetails {
+  display: flex;
   align-items: center;
+  margin-top: -2em;
+}
+
+.flightDetails h3 {
+  width: 5em;
+}
+
+.flightDetails p {
+  width: 15em;
 }
 
 .status {
@@ -175,17 +192,23 @@
   display: flex;
   align-items: center;
   height: 2em;
-  padding-top: 1em;
   padding: 1em;
-  border-bottom: solid rgb(195, 195, 195) 2px;
+  padding-top: 0.4em;
+  padding-bottom: 0.4em;
+  border-bottom: solid rgb(195, 195, 195) 4px;
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .table-column > div {
   font-weight: bolder;
 }
-.table-column > div > p {
+.table-column > div > h5 {
   font-weight: bolder;
   padding: 0.5em;
+  padding-left: 0;
   border-radius: 0.5em;
   color: black;
   background-color: white;
@@ -193,9 +216,11 @@
   border-top-left-radius: 0;
 }
 
-.table-column > div > p:hover {
+.table-column > div > h5:hover {
   font-weight: bolder;
   padding: 0.5em;
+  /* padding-left: 0; */
+  margin-left: -0.5em;
   border-radius: 0.5em;
   color: white;
   background-color: #7e0b6e;

@@ -26,7 +26,11 @@ const FlightCard = ({ flight }) => {
                 <p>{formattedTime}</p>
             </div>
             <div className="portOfCallA">
-                <p>{flight.portOfCallA}<br />{flight.flightNo}{'\u0020'}{flight.airline}</p>
+                <h5>{flight.portOfCallA}</h5>
+                <div className="flightDetails">
+                    <h3>{flight.flightNo}</h3>
+                    <p>{'\u0020'}{flight.airline}</p>
+                </div>
             </div>
             <div className="status">
                 <p>{flight.status}</p>

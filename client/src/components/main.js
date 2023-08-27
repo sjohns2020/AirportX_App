@@ -50,19 +50,19 @@ const Main = ({ flights, getDepartures, getArrivals, getFlights, sortFlights }) 
 
                         <div className="table-column" key="">
                             <div className="image">
-                            <p value="airline" onClick={sortByAirline}>Airline</p>
+                            <h5 value="airline" onClick={sortByAirline}>AIRLINE</h5>
                             </div>
                             <div className="time">
-                            <p>Time</p>
+                            <h5>TIME</h5>
                             </div>
                             <div className="portOfCallA">
-                            <p>Flight Details</p>
+                            <h5>FLIGHT DETAILS</h5>
                             </div>
                             <div className="status">
-                            <p>Status</p>
+                            <h5>STATUS</h5>
                             </div>
                             <div className="more-details">
-                            <p>More Details</p>
+                            <h5>MORE DETAILS</h5>
                             </div>
                         </div>
                         <div className="table-row-container">

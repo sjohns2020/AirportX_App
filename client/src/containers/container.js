@@ -43,7 +43,7 @@ return (
         <main className="main">
             <Main flights={flights} getDepartures={getDepartures} getArrivals={getArrivals} getFlights={getFlights} sortFlights={sortFlights} />
         </main>
-        <Footer />
+        {/* <Footer /> */}
     </div>
 );
 }
