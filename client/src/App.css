@@ -122,29 +122,86 @@
 }
 
 .table {
-  width: 90%;
+  /* width: 100%; */
   font-size: 1.1em;
   color: black;
   background: white;
-  padding: 1em;
+  padding: 0.5em;
 
 }
 
-.table-row > td {
+
+.table-row {
+  display: flex;
+  align-items: center;
   height: 2em;
+  padding-top: 1em;
+  padding: 1em;
   border-bottom: solid rgb(195, 195, 195) 2px;
-  
+}
+
+.image {
+  display: flex;
+  width: 10em;
+  align-items: center;
+}
+
+.time {
+  display: flex;
+  width: 10em;
+  align-items: center;
+}
+
+.portOfCallA {
+  display: flex;
+  width: 20em;
+  align-items: center;
+}
+
+.status {
+  display: flex;
+  width: 15em;
+  align-items: center;
+}
+
+.more-details {
+  display: flex;
+  width: 10em;
+  align-items: center;
 }
 
 
-.table-column > th {
-  text-align: start;
-  font-size: 0.8em;
-  margin: 1em;
-  background-color: #87487e7f;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  border-top-right-radius: 0.5em;
+.table-column {
+  display: flex;
+  align-items: center;
+  height: 2em;
+  padding-top: 1em;
+  padding: 1em;
+  border-bottom: solid rgb(195, 195, 195) 2px;
+}
+
+.table-column > div {
+  font-weight: bolder;
+}
+.table-column > div > p {
+  font-weight: bolder;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  color: black;
+  background-color: white;
+  border-radius: 0.5em;
+  border-top-left-radius: 0;
+}
+
+.table-column > div > p:hover {
+  font-weight: bolder;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  color: white;
+  background-color: #7e0b6e;
+  transition: 0.2s;
+  border-radius: 0.5em;
+  border-top-left-radius: 0;
 }
 
 

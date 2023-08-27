@@ -33,11 +33,15 @@ const Container = () => {
         setFlights(arrivals)
     }
 
+    const sortFlights = (sortKey, tab) => {
+      console.log(sortKey, tab)
+    }
+
 return (
     <div className="App">
         <Header />
         <main className="main">
-            <Main flights={flights} getDepartures={getDepartures} getArrivals={getArrivals} getFlights={getFlights} />
+            <Main flights={flights} getDepartures={getDepartures} getArrivals={getArrivals} getFlights={getFlights} sortFlights={sortFlights} />
         </main>
         <Footer />
     </div>
