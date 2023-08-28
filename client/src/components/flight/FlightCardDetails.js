@@ -31,7 +31,7 @@ const FlightDetails = ({ flight }) => {
 
                 <div className="table-row-expanded-row">
                     <div className="table-row-expanded-row-title">
-                        <p>Flight Number</p>
+                        <p>Flight No</p>
                     </div>
                     <div className="table-row-expanded-row-data">
                         <p>{flight.flightNo}</p>

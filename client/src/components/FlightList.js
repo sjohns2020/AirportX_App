@@ -1,8 +1,8 @@
 import FlightCard from "./flight/FlightCardMain";
 import React, { useState } from 'react'
-import SearchBar from "./search/SearchBarMain";
+import SearchBarNew from "./search/SearchBarNew";
 
-const FlightList = ({ flights, getDepartures, getArrivals, getFlights, sortFlights, searchFlight, searchError, setSearchError, tab, setTab}) => {
+const FlightList = ({ flights, getDepartures, getArrivals, getFlights, sortFlights, searchFlight, searchError, setSearchError, tab, setTab }) => {
 
     //use state to show clicked and then set the h1 classname accordingly
     const [expand, setExpand] = useState("")
@@ -32,19 +32,31 @@ const FlightList = ({ flights, getDepartures, getArrivals, getFlights, sortFligh
         )
     })
 
+
+
     return (
         <main className="main">
-            <SearchBar searchFlight={searchFlight} searchError={searchError} setSearchError={setSearchError} flights={flights}/>
+            {/* <SearchBar searchFlight={searchFlight} searchError={searchError} setSearchError={setSearchError} flights={flights} /> */}
             <div className="main-headings">
-                <div className={tab === "getFlights" ? "main-flights-selected" : "main-flights"}>
-                    <h1 data-tab="getFlights" onClick={toggleTab}>All Flights</h1>
+                <div data-tab="getFlights" onClick={toggleTab} className={tab === "getFlights" ? "main-flights-selected" : "main-flights"}>
+                    <h1 className="main-flights-content">All Flights</h1>
                 </div>
-                <div className={tab === "getDepartures" ? "main-flights-selected" : "main-flights"}>
-                    <h1 data-tab="getDepartures" onClick={toggleTab}>Departures</h1>
+                <div data-tab="getDepartures" onClick={toggleTab} className={tab === "getDepartures" ? "main-flights-selected" : "main-flights"}>
+                    <h1 className="main-flights-content"  >Departures</h1>
                 </div>
-                <div className={tab === "getArrivals" ? "main-flights-selected" : "main-flights"}>
-                    <h1 data-tab="getArrivals" onClick={toggleTab}>Arrivals</h1>
+                <div onClick={toggleTab} data-tab="getArrivals" className={tab === "getArrivals" ? "main-flights-selected" : "main-flights"}>
+                    <h1 className="main-flights-content">Arrivals</h1>
                 </div>
+                <div onClick={toggleTab} data-tab="sortFlights" className={tab === "sortFlights" ? "main-flights-selected-search" : "main-flights-search"}>
+                    <i className="fa-solid fa-magnifying-glass fa-2xl" data-tab="sortFlights"></i>
+                    {tab === "sortFlights" &&
+                        <div className="main-flights-selected-search" data-tab="sortFlights">
+                            <h1 data-tab="sortFlights" ></h1>
+                            <SearchBarNew searchFlight={searchFlight} />
+                        </div>}
+                </div>
+
+
             </div>
             <div className="table-search-container">
                 <div className="table-container">
@@ -66,6 +78,7 @@ const FlightList = ({ flights, getDepartures, getArrivals, getFlights, sortFligh
                             <div className="more-details">
                                 <h5>MORE DETAILS</h5>
                             </div>
+
                         </div>
                         {flightList}
 

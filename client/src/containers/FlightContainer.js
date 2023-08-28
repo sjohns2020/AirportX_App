@@ -23,7 +23,7 @@ const FlightContainer = () => {
                 if (flights.length > 0) {
                     setFlights(flights)
                     setSearchError("")
-                    setTab("getFlights")
+                    setTab("sortFlights")
                 }
                 else setSearchError(`There are no Flights matching this Flight Number: ${searchTerm}.  Please try again.`)
             }

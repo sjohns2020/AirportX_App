@@ -74,7 +74,7 @@ const SearchBar = ({ searchFlight, searchError, setSearchError, flights }) => {
         <>
             {!expandSearchBar
                 ?
-                <div className="search-bar" >
+                <div className="search-bar"  >
                     <div className="search-logo" onClick={toggleSearchBar}>
                         <i className="fa-solid fa-magnifying-glass fa-2xl"></i>
                         <h1>Search...</h1>
