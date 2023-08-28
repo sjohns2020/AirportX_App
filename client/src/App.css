@@ -6,21 +6,24 @@
   flex-direction: column;
 }
 
+
 .header {
-  width: 100%;
-  height: 5em;
-  padding: 0.5em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px  #87487e7f solid;
+  padding: 1em;
+  background-color: #7e0b6e;
+  color: white;
+  border-bottom: 2px solid #87487e7f;
 }
 
-.header > section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+
+/* Style for the logo image */
+.logo {
+  height: 4em;
 }
+
 
 .main {
   flex: 1;
@@ -35,7 +38,9 @@
   justify-content: center;
   padding: 0.5em;
   border: 1px solid #87487e7f;
-  border-radius: 1.5em;
+  border-radius: 1em;
+  background-color: white;
+  border-top-left-radius: 0;
 }
 
 .title-container {
@@ -45,7 +50,8 @@
   align-items: center;
   padding: 0.5em;
   border: 3px solid white;
-  border-radius: 0.7em;
+  border-radius: 0.5em;
+  border-top-left-radius: 0;
 }
 
 .logo {
@@ -83,13 +89,14 @@
 
 .main {
   margin: 2em;
-  border-radius: 2em;
+  border-radius: 1.5em;
   border-top-left-radius: 0;
   padding: 0.5em;
 }
 
 .main-headings {
   display: flex;
+  margin-left: 2em;
 }
 
 .main-flights {
@@ -98,6 +105,8 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+
+  
 }
 
 .main-flights-content {
@@ -138,12 +147,15 @@
   justify-content: space-evenly;
 }
 
+@media (max-width: 1200px) {
+  .main-headings > div > h1 {
+    font-size: small;
+  }
+}
+
 .table-container {
-  width: 100%;
-  /* height: 100vh; */
-  /* overflow: scroll; */
-  border-radius: 2em;
-  border-top-left-radius: 0;
+  margin-left: 2em;
+  margin-bottom: 2em;
 }
 
 .table {
@@ -151,6 +163,8 @@
   color: black;
   background: white;
   padding: 0.5em;
+  border-radius: 1em;
+  border-top-left-radius: 0;
 
 }
 
@@ -329,6 +343,8 @@
   border-top-left-radius: 0;
 }
 
+
+
 .table-column > div > h5:hover {
   font-weight: bolder;
   padding: 0.5em;
@@ -364,12 +380,15 @@
   align-items: center;
 }
 
-.search-logo > i {
-  /* height: 2em; */
-}
 
 .search-logo > h1 {
   margin-left: 0.5em;
+}
+
+.table-search-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .search-bar-extended {
@@ -385,30 +404,131 @@
   border-top-left-radius: 0;
 }
 
-.search-bar-container {
-  padding: 2em;
-  padding-top: 0;
+/*  Form  */
+
+.form-container {
+  display: flex;
+  align-items: center;
+}
+
+.input-field {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  font-size: 16px;
+}
+
+.submit-button {
+  background-color: #7e0b6e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-left: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #5d0958;
+}
+
+@media (max-width: 768px) {
+  .form-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .input-field {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .submit-button {
+    margin-left: 0;
+    width: 100%;
+  }
 }
 
 
 .search-status {
-  width: 50vw;
-  display: flex;
+  display: flex wrap;
   justify-content: space-evenly;
-  align-items: center;
 }
 
 .search-airlines {
-  width: 80vw;
   display: flex wrap;
-  justify-content: space-evenly;
-  align-items: center;
 }
+
+.search-airlines {
+  margin-left: 7em;
+}
+
 .search-airlines > img {
-  padding:10px;
-  /* border: 1px grey solid; */
-  margin: 5px;
+  padding: 5px;
+  margin: 1px;
 }
+
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: #7e0b6f0d;
+  border-radius: 1em;
+  border-top-left-radius: 0;
+
+}
+
+@media (max-width: 1200px) {
+  .filter-container {
+    height: 8em;
+    overflow: scroll;
+  }
+}
+
+.filter-status {
+  flex: 1;
+  padding-right: 10px;
+}
+
+.filter-split {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.search-status {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.status-button {
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  margin: 1px;
+  margin-left: 2em;
+}
+
+.status-button p {
+  margin: 0;
+  text-transform: capitalize;
+  font-size: 14px;
+  font-weight: bold;
+  pointer-events: none; 
+}
+
+.status-button button {
+  font-size: 16px;
+  padding: 5px 8px;
+  background: none;
+  border: none;
+}
+
 
 
 .footer {

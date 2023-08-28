@@ -5,6 +5,8 @@ import FlightList from '../components/FlightList';
 const FlightContainer = () => {
 
     const [flights, setFlights] = useState([])
+    const [uniqueAirlines, setUniqueAirlines] = useState([])
+
     const [searchError, setSearchError] = useState("")
     const [tab, setTab] = useState("getFlights")
 
@@ -33,7 +35,7 @@ const FlightContainer = () => {
                 const flights = await res.json()
                 console.log(flights)
                 setFlights(flights)
-                setTab("getFlights")
+                setTab("sortFlights")
             }
             if (search["airline"]) {
                 console.log("my airline " + search["airline"])
@@ -42,7 +44,7 @@ const FlightContainer = () => {
                 const flights = await res.json()
                 console.log(flights)
                 setFlights(flights)
-                setTab("getFlights")
+                setTab("sortFlights")
 
             }
         }
@@ -51,6 +53,8 @@ const FlightContainer = () => {
             const flights = await res.json()
             setFlights(flights)
             setTab("getFlights")
+            getUniqueAirlines(flights)
+            
         }
     }
 
@@ -95,10 +99,23 @@ const FlightContainer = () => {
     }
     else {
         getFlights()
+    }}
+
+    // Get unique list of airlines for the filter bar
+    const getUniqueAirlines = (allFlights) => {
+        const uniqueFlightsByAirline = allFlights.reduce((accumulator, flight) => {
+            // Check if the airline already exists in the accumulator
+            const existingAirline = accumulator.find(item => item.airline === flight.airline);
+            // If the airline exists, no need to add a duplicate entry
+            if (existingAirline) {
+                return accumulator;
+            }
+            // If the airline doesn't exist, add it to the accumulator
+            return [...accumulator, flight];
+        }, []);
+        setUniqueAirlines(uniqueFlightsByAirline)
     }
 
-
-    }
 
     const sortFlights = (sortKey, tab) => {
         console.log(sortKey, tab)
@@ -106,11 +123,13 @@ const FlightContainer = () => {
 
 
 
+
+
     return (
         <div className="App">
             <Header />
             <main className="main">
-                <FlightList flights={flights} getDepartures={getDepartures} getArrivals={getArrivals} getFlights={getFlights} sortFlights={sortFlights} searchFlight={searchFlight} searchError={searchError} setSearchError={setSearchError} tab={tab} setTab={setTab} />
+                <FlightList flights={flights} getDepartures={getDepartures} getArrivals={getArrivals} getFlights={getFlights} sortFlights={sortFlights} searchFlight={searchFlight} searchError={searchError} setSearchError={setSearchError} tab={tab} setTab={setTab} uniqueAirlines={uniqueAirlines}/>
             </main>
         </div>
     );

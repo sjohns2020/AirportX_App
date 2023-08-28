@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const SearchBarNew = ({searchFlight}) => {
+const SearchBarNew = ({ searchFlight }) => {
 
 
     const [searchFlightNo, setSearchFlightNo] = useState(null)
@@ -20,9 +20,21 @@ const SearchBarNew = ({searchFlight}) => {
 
     return (
         <form onSubmit={handleSubmit} data-tab="sortFlights">
-            <input id="search" type="text" onChange={handleFlightNoChange} placeholder='Search Flight No...' data-tab="sortFlights" />
-            <button type="submit" data-tab="sortFlights">Search</button>
+            <input
+                id="search"
+                type="text"
+                className="input-field"
+                onChange={handleFlightNoChange}
+                placeholder="Search Flight No..."
+                data-tab="sortFlights"
+            />
+            <button type="submit" className="submit-button" data-tab="sortFlights">
+                Search
+            </button>
         </form>
+
+
+
 
     );
 }

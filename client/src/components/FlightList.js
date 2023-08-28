@@ -1,8 +1,9 @@
 import FlightCard from "./flight/FlightCardMain";
 import React, { useState } from 'react'
-import SearchBarNew from "./search/SearchBarNew";
+import SearchBarNew from "./search/ASearchBarNew";
+import FilterBar from "./search/AFilterBar";
 
-const FlightList = ({ flights, getDepartures, getArrivals, getFlights, sortFlights, searchFlight, searchError, setSearchError, tab, setTab }) => {
+const FlightList = ({ flights, getDepartures, getArrivals, getFlights, sortFlights, searchFlight, searchError, setSearchError, tab, setTab, uniqueAirlines }) => {
 
     //use state to show clicked and then set the h1 classname accordingly
     const [expand, setExpand] = useState("")
@@ -55,12 +56,11 @@ const FlightList = ({ flights, getDepartures, getArrivals, getFlights, sortFligh
                             <SearchBarNew searchFlight={searchFlight} />
                         </div>}
                 </div>
-
-
             </div>
             <div className="table-search-container">
                 <div className="table-container">
                     <div className="table">
+                        {tab === "sortFlights" && <FilterBar searchFlight={searchFlight} setSearchError={setSearchError} uniqueAirlines={uniqueAirlines} />  }
 
                         <div className="table-column" key="">
                             <div className="image">
@@ -81,11 +81,10 @@ const FlightList = ({ flights, getDepartures, getArrivals, getFlights, sortFligh
 
                         </div>
                         {flightList}
-
-
                     </div>
                 </div>
             </div>
+
         </main>
 
     );
