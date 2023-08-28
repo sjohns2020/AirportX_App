@@ -2,10 +2,9 @@ import FlightCard from "./flight/flightCard";
 import React, { useState } from 'react'
 import SearchBar from "./searchBar";
 
-const Main = ({ flights, getDepartures, getArrivals, getFlights, sortFlights }) => {
+const Main = ({ flights, getDepartures, getArrivals, getFlights, sortFlights, searchFlight, searchError, setSearchError, tab, setTab}) => {
 
     //use state to show clicked and then set the h1 classname accordingly
-    const [tab, setTab] = useState("getFlights")
     const [expand, setExpand] = useState("")
 
 
@@ -35,7 +34,7 @@ const Main = ({ flights, getDepartures, getArrivals, getFlights, sortFlights }) 
 
     return (
         <main className="main">
-            <SearchBar />
+            <SearchBar searchFlight={searchFlight} searchError={searchError} setSearchError={setSearchError} flights={flights}/>
             <div className="main-headings">
                 <div className={tab === "getFlights" ? "main-flights-selected" : "main-flights"}>
                     <h1 data-tab="getFlights" onClick={toggleTab}>All Flights</h1>
