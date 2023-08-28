@@ -9,6 +9,7 @@ const Container = () => {
 
     useEffect(() => {
         getFlights()
+        
     }, [])
 
 

@@ -1,4 +1,5 @@
-const SimpleFlightCard = ({flight, showMoreDetail, formattedTime, moreDetails}) => {
+const SimpleFlightCard = ({flight, showMoreDetail, formattedTime, moreDetails, icon}) => {
+
     return (
         <div className="table-row" onClick={showMoreDetail}>
             <div className="image">

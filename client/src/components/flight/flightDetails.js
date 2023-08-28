@@ -65,7 +65,7 @@ const FlightDetails = ({ flight }) => {
                     <div className="table-row-expanded-row-data">
                         {flight.otherInfo || flight.additional
                             ? <p>{flight.otherInfo}<br />{flight.additional}</p>
-                            : null
+                            : <p>No Update</p>
                         }
                     </div>
                 </div>

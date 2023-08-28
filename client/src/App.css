@@ -252,6 +252,24 @@
   align-items: center;
 }
 
+@media (max-width: 1200px) {
+  .more-details {
+    display: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  .status{
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .image {
+    display: none;
+  }
+}
+
 
 .table-column {
   display: flex;

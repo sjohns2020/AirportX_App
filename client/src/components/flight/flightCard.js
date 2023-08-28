@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DetailedFlightCard from "./detailedFlightCard";
 import SimpleFlightCard from "./simpleFlightCard";
 
@@ -31,6 +31,8 @@ const FlightCard = ({ flight, expand, setExpand }) => {
     const showLessDetail = () => {
         setExpand("")
     }
+
+
 
     return (
         <>
