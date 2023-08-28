@@ -1,8 +1,8 @@
-import FlightCard from "./flight/flightCard";
+import FlightCard from "./flight/FlightCardMain";
 import React, { useState } from 'react'
-import SearchBar from "./searchBar";
+import SearchBar from "./search/SearchBarMain";
 
-const Main = ({ flights, getDepartures, getArrivals, getFlights, sortFlights, searchFlight, searchError, setSearchError, tab, setTab}) => {
+const FlightList = ({ flights, getDepartures, getArrivals, getFlights, sortFlights, searchFlight, searchError, setSearchError, tab, setTab}) => {
 
     //use state to show clicked and then set the h1 classname accordingly
     const [expand, setExpand] = useState("")
@@ -78,4 +78,4 @@ const Main = ({ flights, getDepartures, getArrivals, getFlights, sortFlights, se
     );
 }
 
-export default Main;
+export default FlightList;

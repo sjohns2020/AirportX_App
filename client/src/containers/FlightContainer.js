@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import Header from '../components/header';
-import Main from '../components/main';
+import Header from '../components/Header';
+import FlightList from '../components/FlightList';
 
-const Container = () => {
+const FlightContainer = () => {
 
     const [flights, setFlights] = useState([])
     const [searchError, setSearchError] = useState("")
@@ -110,10 +110,10 @@ const Container = () => {
         <div className="App">
             <Header />
             <main className="main">
-                <Main flights={flights} getDepartures={getDepartures} getArrivals={getArrivals} getFlights={getFlights} sortFlights={sortFlights} searchFlight={searchFlight} searchError={searchError} setSearchError={setSearchError} tab={tab} setTab={setTab} />
+                <FlightList flights={flights} getDepartures={getDepartures} getArrivals={getArrivals} getFlights={getFlights} sortFlights={sortFlights} searchFlight={searchFlight} searchError={searchError} setSearchError={setSearchError} tab={tab} setTab={setTab} />
             </main>
         </div>
     );
 }
 
-export default Container;
+export default FlightContainer;

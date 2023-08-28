@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import DetailedFlightCard from "./detailedFlightCard";
-import SimpleFlightCard from "./simpleFlightCard";
+import DetailedFlightCard from "./FlightCardExpanded";
+import SimpleFlightCard from "./FlightCardSimple";
 
 const FlightCard = ({ flight, expand, setExpand }) => {
 

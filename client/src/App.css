@@ -311,15 +311,49 @@
 .search-bar {
   color: black;
   background-color: white;
-  padding: 2em;
+  padding-left: 2em;
+  padding-right: 2em;
+  height: 4em;
   margin: 2em 0 4em 0;
   border-radius: 1em;
+  width: fit-content;
+  height: fit-content;
+   /* height: 1em;
+  border: 2em; */
+  border-top-left-radius: 0;
 }
 
-.search-bar > h1 {
-  margin:0;
-  padding: 0;
+.search-logo {
+  display: flex;
+  align-items: center;
 }
+
+.search-logo > i {
+  /* height: 2em; */
+}
+
+.search-logo > h1 {
+  margin-left: 0.5em;
+}
+
+.search-bar-extended {
+  color: black;
+  background-color: white;
+  padding-left: 2em;
+  padding-right: 2em;
+  height: 4em;
+  margin: 2em 0 4em 0;
+  border-radius: 1em;
+  width: fit-content;
+  height: fit-content;
+  border-top-left-radius: 0;
+}
+
+.search-bar-container {
+  padding: 2em;
+  padding-top: 0;
+}
+
 
 .search-status {
   width: 50vw;

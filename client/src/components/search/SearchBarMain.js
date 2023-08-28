@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import ExpandedSearchBar from './SearchBarExtended';
 
 const SearchBar = ({ searchFlight, searchError, setSearchError, flights }) => {
 
     const [searchFlightNo, setSearchFlightNo] = useState(null)
+    const [expandSearchBar, setExpandSearchBar] = useState(false)
 
     const handleFlightNoChange = (e) => {
         setSearchFlightNo(e.target.value)
@@ -37,6 +39,11 @@ const SearchBar = ({ searchFlight, searchError, setSearchError, flights }) => {
         searchFlight()
     }
 
+    const toggleSearchBar = () => {
+        setExpandSearchBar(!expandSearchBar)
+    }
+
+
 
     const uniqueFlightsByAirline = flights.reduce((accumulator, flight) => {
         // Check if the airline already exists in the accumulator
@@ -64,34 +71,21 @@ const SearchBar = ({ searchFlight, searchError, setSearchError, flights }) => {
 
 
     return (
-        <div className="search-bar">
-            <h1>Search By:</h1>
-            <h3>Flight Number</h3>
-            <form onSubmit={handleSubmit} className="search-status">
-                <label htmlFor="search">Enter Flight Number: </label>
-                <input id="search" type="text" onChange={handleFlightNoChange} />
-                <button type="submit">Search</button>
-            </form>
-            <div>
-                <h3>Flight Status</h3>
-                <div className="search-status">
-                    <button value="AIRBORN" onClick={handleFlightStatusChange} className="fa-solid fa-plane-departure"></button>
-                    <button value="LANDED" onClick={handleFlightStatusChange} className="fa-solid fa-plane-arrival"></button>
-                    <button value="TAXIED" onClick={handleFlightStatusChange} className="fa-solid fa-taxi"></button>
-                    <button value="GATE" onClick={handleFlightStatusChange} className="fa-solid fa-rectangle-xmark"></button>
-                    <button value="EXPECTED" onClick={handleFlightStatusChange} className="fa-solid fa-clock"></button>
-                    <button value="SCHEDULED" onClick={handleFlightStatusChange} className="fa-regular fa-clock"></button>
-                    <button value="LAST" onClick={handleFlightStatusChange} className="fa-solid fa-person-walking-dashed-line-arrow-right"></button>
-                    <button value="ESTIMATED" onClick={handleFlightStatusChange} className="fa-regular fa-hourglass-half"></button>
+        <>
+            {!expandSearchBar
+                ?
+                <div className="search-bar" >
+                    <div className="search-logo" onClick={toggleSearchBar}>
+                        <i className="fa-solid fa-magnifying-glass fa-2xl"></i>
+                        <h1>Search...</h1>
+                    </div>
                 </div>
-                <h3>Flight Airlines</h3>
-                <div className="search-airlines">
-                    {airlines}
-                </div>
-                {searchError && <p>{searchError}</p>}
-                <button onClick={resetSearch}>Reset Search</button>
-            </div>
-        </div>
+                :
+                <ExpandedSearchBar handleSubmit={handleSubmit} handleFlightNoChange={handleFlightNoChange} handleFlightStatusChange={handleFlightStatusChange} searchError={searchError} resetSearch={resetSearch} airlines={airlines} toggleSearchBar={toggleSearchBar} />
+            }
+
+
+        </>
 
     );
 }
