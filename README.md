@@ -49,9 +49,16 @@ The client has asked me to build a full stack application using React and Node.j
 
 <br><br>
 
-<video width="640" height="480" controls>
-  <source src="https://youtu.be/GIcc9Aq3LBw" type="video/mp4">
-</video>
+<iframe
+    width="640"
+    height="480"
+    src="https://youtu.be/GIcc9Aq3LBw"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen
+>
+</iframe>
+
 
 <br><br>
 
