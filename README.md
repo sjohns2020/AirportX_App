@@ -1,6 +1,8 @@
 # AirportX_App
 
 
+[PLAY DEMO](https://www.youtube.com/watch?v=GIcc9Aq3LBw)
+
 ### Brief
 
 The client has asked me to build a full stack application using React and Node.js to allow a user to view and filter a list of flight data. Using JSON flight data, create an API using Node.js, Express and MySQL.  Then, build a React App to call the API and display the flights in a table that can be filtered.
@@ -47,17 +49,8 @@ The client has asked me to build a full stack application using React and Node.j
 - I Implemented a reusable router in the server providing `RESTful` routing. This allows the server to handle routing for any future tables that get added to the database and with only a few lines of code we can reuse the same router. The unused routes are commented out currently to secure the API from being manipulated.
 - I used a well-constructed `component hierarchy structure` on the React App.  This allows the app to be extended and maintained with relative ease.
 
-<br><br>
 
-<iframe
-    width="640"
-    height="480"
-    src="https://youtu.be/GIcc9Aq3LBw"
-    frameborder="0"
-    allow="autoplay; encrypted-media"
-    allowfullscreen
->
-</iframe>
+
 
 
 <br><br>
@@ -210,3 +203,5 @@ There is no authentication for the Flight API
 - Create `component hierarchy` and `component structure` diagrams and wireframes to ensure I had a plan for the React App
 - Build the React app, refactoring code where needed. 
 - TESTING - Tested the React app using Cypress testing library.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/GIcc9Aq3LBw?si=67xmZExOBcTecGSQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
