@@ -1,4 +1,4 @@
-import FlightCard from "./flight/FlightCardMain";
+import FlightCard from "./flight/FlightCard";
 import React, { useState } from 'react'
 import FilterBar from "./search/FilterBar";
 import SearchBar from "./search/SearchBar";
@@ -42,10 +42,10 @@ const FlightList = ({ flights, getDepartures, getArrivals, getFlights, sortFligh
                 <div data-tab="getFlights" onClick={toggleTab} className={tab === "getFlights" ? "main-flights-selected" : "main-flights"}>
                     <h1 className="main-flights-content">Flights</h1>
                 </div>
-                <div data-tab="getDepartures" onClick={toggleTab} className={tab === "getDepartures" ? "main-flights-selected" : "main-flights"}>
+                <div data-testid="get-departures" data-tab="getDepartures" onClick={toggleTab} className={tab === "getDepartures" ? "main-flights-selected" : "main-flights"}>
                     <h1 className="main-flights-content"  >Departures</h1>
                 </div>
-                <div onClick={toggleTab} data-tab="getArrivals" className={tab === "getArrivals" ? "main-flights-selected" : "main-flights"}>
+                <div data-testid="get-arrivals" onClick={toggleTab} data-tab="getArrivals" className={tab === "getArrivals" ? "main-flights-selected" : "main-flights"}>
                     <h1 className="main-flights-content">Arrivals</h1>
                 </div>
                 <div onClick={toggleTab} data-tab="sortFlights" className={tab === "sortFlights" ? "main-flights-selected-search" : "main-flights-search"}>

@@ -125,6 +125,11 @@ Create a full stack app using React and Node.js to allow a user to view and filt
         npm start
     ```
 - View the frontend React app in the [browser](http://localhost:3000/)
+- (Optional) Run Cypress e2e tests to ensure the App loads (Make sure the client is running to perform the tests)
+    ```sh 
+        #terminal
+        npm run tests:e2e
+    ```
 
 <br><br>
 

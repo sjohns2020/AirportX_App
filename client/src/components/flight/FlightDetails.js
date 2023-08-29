@@ -24,8 +24,8 @@ const FlightDetails = ({ flight }) => {
                     </div>
                     <div className="table-row-expanded-row-data">
                         {flight.arrDep === "A"
-                            ? <p>Arriving at {formattedTime}</p>
-                            : <p>Departing at {formattedTime}</p>}
+                            ? <p  >Arriving at {formattedTime}</p>
+                            : <p >Departing at {formattedTime}</p>}
                     </div>
                 </div>
 
@@ -41,8 +41,8 @@ const FlightDetails = ({ flight }) => {
                 <div className="table-row-expanded-row">
                     <div className="table-row-expanded-row-title">
                         {flight.arrDep === "A"
-                            ? <p>From</p>
-                            : <p>To</p>}
+                            ? <p data-testid="get-arr" >From</p>
+                            : <p data-testid="get-dep" >To</p>}
                     </div>
                     <div className="table-row-expanded-row-data">
                         <p>{flight.portOfCallA}</p>
@@ -54,7 +54,7 @@ const FlightDetails = ({ flight }) => {
                         <p>Status</p>
                     </div>
                     <div className="table-row-expanded-row-data">
-                        <p>{flight.status}</p>
+                        <p data-testid="check-status">{flight.status}</p>
                     </div>
                 </div>
 

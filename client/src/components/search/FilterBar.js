@@ -42,7 +42,7 @@ const FilterBar = ({ searchFlight, setSearchError, uniqueAirlines }) => {
                             </button>
                         </div>
                         <div className="status-button">
-                            <button value="LANDED" onClick={handleFlightStatusChange}>
+                            <button data-testid="get-airborn" value="LANDED" onClick={handleFlightStatusChange}>
                                 <p className="fa-solid fa-plane-arrival"></p>
                                 <p>Landed</p>
                             </button>

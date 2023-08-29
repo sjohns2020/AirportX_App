@@ -1,4 +1,4 @@
-import FlightDetails from "./FlightCardDetails";
+import FlightDetails from "./FlightDetails";
 
 const DetailedFlightCard = ({ flight, showLessDetail, formattedTime, moreDetails }) => {
     return (

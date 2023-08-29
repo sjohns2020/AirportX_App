@@ -198,12 +198,12 @@
   display: flex;
   align-items: center;
   height: 2em;
-  padding-top: 1em;
   padding: 1em;
   border-radius: 1em;
   border-top-left-radius: 0;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
+  border-bottom: 1px;
 }
 
 
@@ -213,6 +213,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 0.5em;
 
 }
 

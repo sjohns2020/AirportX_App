@@ -1,17 +1,9 @@
-import { useState, useEffect } from "react";
-import DetailedFlightCard from "./FlightCardExpanded";
-import SimpleFlightCard from "./FlightCardSimple";
+
+import DetailedFlightCard from "./DetailedFlightCard";
+import SimpleFlightCard from "./SimpleFlightCard";
 
 const FlightCard = ({ flight, expand, setExpand }) => {
 
-    // Formatting Date (DID NOT USE)
-    const originalDate = new Date(flight.date);
-    const dateFormatter = new Intl.DateTimeFormat("en", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric"
-    });
-    const formattedDate = dateFormatter.format(originalDate);
 
     // Formatting Time
     const [hours, minutes] = flight.time.split(":").slice(0, 2);
