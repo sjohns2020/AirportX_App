@@ -81,8 +81,8 @@ const FilterBar = ({ searchFlight, setSearchError, uniqueAirlines }) => {
                         </div>
                         <div className="status-button">
                             <button value="ESTIMATED" onClick={handleFlightStatusChange}>
-                            <p className="fa-regular fa-hourglass-half"></p>
-                            <p>Estimated</p>
+                                <p className="fa-regular fa-hourglass-half"></p>
+                                <p>Estimated</p>
                             </button>
                         </div>
                     </div>

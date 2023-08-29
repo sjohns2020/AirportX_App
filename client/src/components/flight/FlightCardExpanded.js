@@ -24,7 +24,7 @@ const DetailedFlightCard = ({ flight, showLessDetail, formattedTime, moreDetails
                     <p onClick={moreDetails}>{'\u2190' + '\u0020'}Show Less</p>
                 </div>
             </div>
-            <FlightDetails flight={flight}/>
+            <FlightDetails flight={flight} />
 
         </div>
     );

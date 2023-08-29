@@ -117,9 +117,25 @@ const FlightContainer = () => {
     }
 
 
-    const sortFlights = (sortKey, tab) => {
-        console.log(sortKey, tab)
-    }
+    const sortFlights = (sortKey) => {
+        const copiedFlights = [...flights]
+        const sortedFlight = copiedFlights.sort((a, b) => {
+                const valueA = a[sortKey];
+                const valueB = b[sortKey];
+        
+                if (valueA < valueB) {
+                    return -1;
+                }
+                if (valueA > valueB) {
+                    return 1;
+                }
+                return 0;
+            });
+        
+            setFlights(sortedFlight)
+        };
+        
+    
 
 
 

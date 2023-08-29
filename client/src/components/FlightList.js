@@ -1,7 +1,7 @@
 import FlightCard from "./flight/FlightCardMain";
 import React, { useState } from 'react'
-import SearchBarNew from "./search/ASearchBarNew";
-import FilterBar from "./search/AFilterBar";
+import FilterBar from "./search/FilterBar";
+import SearchBar from "./search/SearchBar";
 
 const FlightList = ({ flights, getDepartures, getArrivals, getFlights, sortFlights, searchFlight, searchError, setSearchError, tab, setTab, uniqueAirlines }) => {
 
@@ -21,8 +21,8 @@ const FlightList = ({ flights, getDepartures, getArrivals, getFlights, sortFligh
 
 
 
-    const sortByAirline = (e) => {
-        sortFlights(e.target.value, tab)
+    const sortByColumn = (e) => {
+        sortFlights(e.target.value)
     }
 
     let flightList = flights.map((flight) => {
@@ -35,12 +35,12 @@ const FlightList = ({ flights, getDepartures, getArrivals, getFlights, sortFligh
 
 
 
+
     return (
         <main className="main">
-            {/* <SearchBar searchFlight={searchFlight} searchError={searchError} setSearchError={setSearchError} flights={flights} /> */}
             <div className="main-headings">
                 <div data-tab="getFlights" onClick={toggleTab} className={tab === "getFlights" ? "main-flights-selected" : "main-flights"}>
-                    <h1 className="main-flights-content">All Flights</h1>
+                    <h1 className="main-flights-content">Flights</h1>
                 </div>
                 <div data-tab="getDepartures" onClick={toggleTab} className={tab === "getDepartures" ? "main-flights-selected" : "main-flights"}>
                     <h1 className="main-flights-content"  >Departures</h1>
@@ -53,7 +53,7 @@ const FlightList = ({ flights, getDepartures, getArrivals, getFlights, sortFligh
                     {tab === "sortFlights" &&
                         <div className="main-flights-selected-search" data-tab="sortFlights">
                             <h1 data-tab="sortFlights" ></h1>
-                            <SearchBarNew searchFlight={searchFlight} />
+                            <SearchBar searchFlight={searchFlight} />
                         </div>}
                 </div>
             </div>
@@ -64,19 +64,19 @@ const FlightList = ({ flights, getDepartures, getArrivals, getFlights, sortFligh
 
                         <div className="table-column" key="">
                             <div className="image">
-                                <h5 value="airline" onClick={sortByAirline}>AIRLINE</h5>
+                            <button className="button-sort" value="airline" onClick={sortByColumn}>AIRLINE</button>
                             </div>
                             <div className="time">
-                                <h5>TIME</h5>
+                            <button className="button-sort" value="time" onClick={sortByColumn}>TIME</button>
                             </div>
                             <div className="portOfCallA">
-                                <h5>FLIGHT DETAILS</h5>
+                            <button className="button-sort" value="portOfCallA" onClick={sortByColumn}>FLIGHT DETAILS</button>
                             </div>
                             <div className="status">
-                                <h5>STATUS</h5>
+                            <button className="button-sort" value="status" onClick={sortByColumn}>STATUS</button>
                             </div>
                             <div className="more-details">
-                                <h5>MORE DETAILS</h5>
+                            <button className="button-sort" >MORE DETAILS</button>
                             </div>
 
                         </div>
