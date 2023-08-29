@@ -1,9 +1,9 @@
 import './App.css';
-import Container from './containers/container';
+import FlightContainer from './containers/FlightContainer';
 
 function App() {
   return (
-      <Container />
+      <FlightContainer />
   );
 }
 

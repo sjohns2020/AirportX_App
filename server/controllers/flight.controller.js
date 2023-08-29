@@ -42,11 +42,11 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
 
   // This code is to help prevent SQL injection attacks by erroring if illegal characters are used.
-  const onlyLettersPattern = /^[A-Za-z]+$/;
+  const alphanumericPattern = /^[A-Za-z0-9]+$/;
   for (const key in req.query) {
     const value = req.query[key];
-    if (!value.match(onlyLettersPattern)) {
-      return res.status(400).json({ err: `Invalid input in query parameter "${key}". "${value}" contains illegal characters. Only letters are allowed.` });
+    if (!value.match(alphanumericPattern)) {
+      return res.status(400).json({ err: `Invalid input in query parameter "${key}". "${value}" contains illegal characters. Only letters and digits are allowed.` });
     }
   }
 
@@ -150,11 +150,11 @@ exports.deleteAll = (req, res) => {
 exports.findAllDepartures = (req, res) => {
 
   // This code is to help prevent SQL injection attacks by erroring if illegal characters are used.
-  const onlyLettersPattern = /^[A-Za-z]+$/;
+  const alphanumericPattern = /^[A-Za-z0-9]+$/;
   for (const key in req.query) {
     const value = req.query[key];
-    if (!value.match(onlyLettersPattern)) {
-      return res.status(400).json({ err: `Invalid input in query parameter "${key}". "${value}" contains illegal characters. Only letters are allowed.` });
+    if (!value.match(alphanumericPattern)) {
+      return res.status(400).json({ err: `Invalid input in query parameter "${key}". "${value}" contains illegal characters. Only letters and digits are allowed.` });
     }
   }
 
@@ -176,11 +176,11 @@ exports.findAllDepartures = (req, res) => {
 exports.findAllArrivals = (req, res) => {
 
   // This code is to help prevent SQL injection attacks by erroring if illegal characters are used.
-  const onlyLettersPattern = /^[A-Za-z]+$/;
+  const alphanumericPattern = /^[A-Za-z0-9]+$/;
   for (const key in req.query) {
     const value = req.query[key];
-    if (!value.match(onlyLettersPattern)) {
-      return res.status(400).json({ err: `Invalid input in query parameter "${key}". "${value}" contains illegal characters. Only letters are allowed.` });
+    if (!value.match(alphanumericPattern)) {
+      return res.status(400).json({ err: `Invalid input in query parameter "${key}". "${value}" contains illegal characters. Only letters and digits are allowed.` });
     }
   }
 
