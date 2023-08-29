@@ -93,7 +93,7 @@
 
 .main-headings {
   display: flex;
-  margin-left: 2em;
+  margin-left: 1em;
 }
 
 .main-flights {
@@ -159,7 +159,7 @@
 
 
 .table-container {
-  margin-left: 2em;
+  margin-left: 1em;
   margin-bottom: 2em;
 }
 
@@ -575,7 +575,7 @@
     padding: 0.2em;
   }
   .table-column {
-    font-size: 0.95em;
+    font-size: 0.99em;
     /* padding: 0.2em; */
   }
 }
@@ -589,8 +589,7 @@
     padding: 0.2em;
   }
   .table-column {
-    font-size: 0.9em;
-    /* padding: 0.2em; */
+    font-size: 0.99em;
   }
 }
 
@@ -600,7 +599,7 @@
     padding: 0.2em;
   }
   .table-column {
-    font-size: 0.8em;
+    font-size: 0.9em;
   }
   .main-flights-selected-search {
     display: none;
