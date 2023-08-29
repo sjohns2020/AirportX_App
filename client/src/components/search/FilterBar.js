@@ -1,6 +1,7 @@
-
+// Only displayed when the search header is selected and displays flight status icons and airline images that when selected will filter the flight data
 const FilterBar = ({ searchFlight, setSearchError, uniqueAirlines }) => {
 
+    // Handles the flight status icon button being pressed and triggers searchFlights function in the  flightContainer
     const handleFlightStatusChange = (e) => {
         let searchStatus = e.target.value
         const search = {
@@ -17,7 +18,7 @@ const FilterBar = ({ searchFlight, setSearchError, uniqueAirlines }) => {
         setSearchError("Showing all flights for: " + searchStatus)
     }
 
-
+    // ailines, when rendered shows an array to img tags for each 'unique' airline to have an up to date selection of current airlines to filter by.
     const airlines = uniqueAirlines.map((flight) => {
         // get first word in airline to search with
         let searchTerm = flight.airline
@@ -42,7 +43,7 @@ const FilterBar = ({ searchFlight, setSearchError, uniqueAirlines }) => {
                             </button>
                         </div>
                         <div className="status-button">
-                            <button value="LANDED" onClick={handleFlightStatusChange}>
+                            <button data-testid="get-airborn" value="LANDED" onClick={handleFlightStatusChange}>
                                 <p className="fa-solid fa-plane-arrival"></p>
                                 <p>Landed</p>
                             </button>
