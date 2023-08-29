@@ -1,3 +1,4 @@
+// SimpleFlightCard renders simple version of the flight information row
 const SimpleFlightCard = ({ flight, showMoreDetail, formattedTime, moreDetails, icon }) => {
 
     return (

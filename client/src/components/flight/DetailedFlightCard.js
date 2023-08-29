@@ -1,6 +1,8 @@
+// FlightDetails renders a more detailled version of the flight information row when a flight card is selected
 import FlightDetails from "./FlightDetails";
 
-const DetailedFlightCard = ({ flight, showLessDetail, formattedTime, moreDetails }) => {
+const DetailedFlightCard = ({ flight, showLessDetail, formattedTime }) => {
+   
     return (
         <div className="table-row-exp" onClick={showLessDetail}>
             <div className="table-row-expanded" >
@@ -21,7 +23,7 @@ const DetailedFlightCard = ({ flight, showLessDetail, formattedTime, moreDetails
                     <p>{flight.status}</p>
                 </div>
                 <div className="more-details">
-                    <p onClick={moreDetails}>{'\u2190' + '\u0020'}Show Less</p>
+                    <p>{'\u2190' + '\u0020'}Show Less</p>
                 </div>
             </div>
             <FlightDetails flight={flight} />

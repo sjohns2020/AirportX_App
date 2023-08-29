@@ -3,13 +3,14 @@ import React, { useState } from 'react'
 import FilterBar from "./search/FilterBar";
 import SearchBar from "./search/SearchBar";
 
+// Flights list reneters all flight data, search, filter and sort functionality
 const FlightList = ({ flights, getDepartures, getArrivals, getFlights, sortFlights, searchFlight, searchError, setSearchError, tab, setTab, uniqueAirlines }) => {
 
-    //use state to show clicked and then set the h1 classname accordingly
+    // Handles state to conditionally render the expansion of the flight card
     const [expand, setExpand] = useState("")
 
 
-    // Handlers for displaying if Flights or Tracked Flights are selected
+    // Toggles between each tab and fetches the correct flight data to display ( All flights, arrivals, departures, sorted data) 
     const toggleTab = (e) => {
         const value = e.target.getAttribute("data-tab")
         setTab(value)
@@ -19,12 +20,12 @@ const FlightList = ({ flights, getDepartures, getArrivals, getFlights, sortFligh
         }
     }
 
-
-
+    // Handles the column heading being clicked and sorts the flight data in the FlightContainer
     const sortByColumn = (e) => {
         sortFlights(e.target.value)
     }
 
+    // Handles displaying a FlightCard component for each flight
     let flightList = flights.map((flight) => {
         return (
             <div className="table-row-container" key={flight.flightNo}>
@@ -60,23 +61,23 @@ const FlightList = ({ flights, getDepartures, getArrivals, getFlights, sortFligh
             <div className="table-search-container">
                 <div className="table-container">
                     <div className="table">
-                        {tab === "sortFlights" && <FilterBar searchFlight={searchFlight} setSearchError={setSearchError} uniqueAirlines={uniqueAirlines} />  }
+                        {tab === "sortFlights" && <FilterBar searchFlight={searchFlight} setSearchError={setSearchError} uniqueAirlines={uniqueAirlines} />}
 
                         <div className="table-column" key="">
                             <div className="image">
-                            <button className="button-sort" value="airline" onClick={sortByColumn}>AIRLINE</button>
+                                <button className="button-sort" value="airline" onClick={sortByColumn}>AIRLINE</button>
                             </div>
                             <div className="time">
-                            <button className="button-sort" value="time" onClick={sortByColumn}>TIME</button>
+                                <button className="button-sort" value="time" onClick={sortByColumn}>TIME</button>
                             </div>
                             <div className="portOfCallA">
-                            <button className="button-sort" value="portOfCallA" onClick={sortByColumn}>FLIGHT DETAILS</button>
+                                <button className="button-sort" value="portOfCallA" onClick={sortByColumn}>FLIGHT DETAILS</button>
                             </div>
                             <div className="status">
-                            <button className="button-sort" value="status" onClick={sortByColumn}>STATUS</button>
+                                <button className="button-sort" value="status" onClick={sortByColumn}>STATUS</button>
                             </div>
                             <div className="more-details">
-                            <button className="button-sort" >MORE DETAILS</button>
+                                <button className="button-sort" >MORE DETAILS</button>
                             </div>
 
                         </div>
@@ -84,9 +85,7 @@ const FlightList = ({ flights, getDepartures, getArrivals, getFlights, sortFligh
                     </div>
                 </div>
             </div>
-
         </main>
-
     );
 }
 

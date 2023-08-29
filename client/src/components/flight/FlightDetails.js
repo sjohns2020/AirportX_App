@@ -1,3 +1,4 @@
+// FlightDetails renders a table of flight details that is displayed when the FlightCard is clicked.
 const FlightDetails = ({ flight }) => {
 
     // Formatting Time

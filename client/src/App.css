@@ -4,6 +4,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  margin-bottom: 2em;
 }
 
 
@@ -394,8 +395,6 @@
   border-top-left-radius: 0;
 }
 
-/*  Form  */
-
 .form-container {
   display: flex;
   align-items: center;
@@ -468,12 +467,14 @@
   background-color: #7e0b6f0d;
   border-radius: 1em;
   border-top-left-radius: 0;
+  margin: 1em;
+  border: solid rgb(195, 195, 195) 4px;
 
 }
 
 @media (max-width: 1200px) {
   .filter-container {
-    height: 8em;
+    height: 14em;
     overflow: scroll;
   }
 }
@@ -520,11 +521,6 @@
 }
 
 
-/* Existing CSS */
-
-/* ... Your existing CSS rules ... */
-
-/* Media queries for responsiveness */
 
 @media (max-width: 1200px) {
   .main-headings > div > h1 {
@@ -536,6 +532,10 @@
   .status {
     display: none;
   }
+  .filter-container {
+    height: 14em;
+    overflow: scroll;
+  }
 }
 
 @media (max-width: 900px) {
@@ -544,6 +544,10 @@
   }
   .main-flights-selected-search {
     padding-left: 1em;
+  }
+  .filter-container {
+    height: 14em;
+    overflow: scroll;
   }
 }
 
@@ -562,22 +566,29 @@
     margin-left: 0;
     width: 100%;
   }
+  .filter-container {
+    height: 14em;
+    overflow: scroll;
+  }
 }
 
 @media (max-width: 600px) {
   .table-column > div > h5 {
     font-size: small;
   }
+  .filter-container {
+    height: 14em;
+    overflow: scroll;
+  }
 }
 
 @media (max-width: 1400px) {
   .table {
     font-size: 0.95em;
-    padding: 0.2em;
+    /* padding: 0.2em; */
   }
   .table-column {
     font-size: 0.99em;
-    /* padding: 0.2em; */
   }
 }
 
@@ -587,7 +598,6 @@
 @media (max-width: 1200px) {
   .table {
     font-size: 0.9em;
-    padding: 0.2em;
   }
   .table-column {
     font-size: 0.99em;
@@ -604,6 +614,10 @@
   }
   .main-flights-selected-search {
     display: none;
+  }
+  .filter-container {
+    height: 16em;
+    overflow: scroll;
   }
 }
 
