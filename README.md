@@ -1,8 +1,5 @@
 # AirportX_App
 
-<video width="640" height="480" controls>
-  <source src="./demo.mov" type="video/mp4">
-</video>
 
 ### Brief
 
@@ -50,6 +47,11 @@ The client has asked me to build a full stack application using React and Node.j
 - I Implemented a reusable router in the server providing `RESTful` routing. This allows the server to handle routing for any future tables that get added to the database and with only a few lines of code we can reuse the same router. The unused routes are commented out currently to secure the API from being manipulated.
 - I used a well-constructed `component hierarchy structure` on the React App.  This allows the app to be extended and maintained with relative ease.
 
+<br><br>
+
+<video width="640" height="480" controls>
+  <source src="https://youtu.be/GIcc9Aq3LBw" type="video/mp4">
+</video>
 
 <br><br>
 
