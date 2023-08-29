@@ -1,6 +1,107 @@
 // The controller handles the request and response from the client. 
 const Flight = require("../models/flights.model");
 
+
+// Retrieve all Flights from the database (with condition).
+exports.findAll = (req, res) => {
+
+  // This code is to help prevent SQL injection attacks by erroring if illegal characters are used.
+  const alphanumericPattern = /^[A-Za-z0-9]+$/;
+  for (const key in req.query) {
+    const value = req.query[key];
+    if (!value.match(alphanumericPattern)) {
+      return res.status(400).json({ err: `Invalid input in query parameter "${key}". "${value}" contains illegal characters. Only letters and digits are allowed.` });
+    }
+  }
+
+  // This route also accepts any query parameter so live data can be filetered
+  Flight.getAll(req.query, (err, data) => {
+
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving flights."
+      });
+    else res.send(data);
+  });
+};
+
+
+// Find a single Flight with a FlightNo
+exports.findOne = (req, res) => {
+  Flight.findById(req.params.id, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found Flight with FlightNo ${req.params.id}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving Flight with FlightNo " + req.params.id
+        });
+      }
+    } else res.send(data);
+  });
+};
+
+
+
+// Find all Departing Flights
+exports.findAllDepartures = (req, res) => {
+
+  // This code is to help prevent SQL injection attacks by erroring if illegal characters are used.
+  const alphanumericPattern = /^[A-Za-z0-9]+$/;
+  for (const key in req.query) {
+    const value = req.query[key];
+    if (!value.match(alphanumericPattern)) {
+      return res.status(400).json({ err: `Invalid input in query parameter "${key}". "${value}" contains illegal characters. Only letters and digits are allowed.` });
+    }
+  }
+
+  // This route also accepts any query parameter so live data can be filetered
+  Flight.getAllDepartingFlights(req.query, (err, data) => {
+    if (err) {
+      res.status(500).send({
+        message: err.message || "Some error occurred while retrieving flights."
+      });
+    } else {
+      res.send(data);
+    }
+  });
+};
+
+
+// Find all Arriving Flights
+exports.findAllArrivals = (req, res) => {
+
+  // This code is to help prevent SQL injection attacks by erroring if illegal characters are used.
+  const alphanumericPattern = /^[A-Za-z0-9]+$/;
+  for (const key in req.query) {
+    const value = req.query[key];
+    if (!value.match(alphanumericPattern)) {
+      return res.status(400).json({ err: `Invalid input in query parameter "${key}". "${value}" contains illegal characters. Only letters and digits are allowed.` });
+    }
+  }
+
+  // This route also accepts any query parameter so live data can be filetered
+  Flight.getAllArrivingFlights(req.query, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving flights."
+      });
+    else res.send(data);
+  });
+};
+
+
+
+
+
+
+
+// Will need to Comment out the CREATE, UPDATE and DELETE controllers until we have authentication. 
+
 // Create and Save a new Flight
 exports.create = (req, res) => {
   // Validate request
@@ -38,52 +139,14 @@ exports.create = (req, res) => {
   });
 };
 
-// Retrieve all Flights from the database (with condition).
-exports.findAll = (req, res) => {
-
-  // This code is to help prevent SQL injection attacks by erroring if illegal characters are used.
-  const alphanumericPattern = /^[A-Za-z0-9]+$/;
-  for (const key in req.query) {
-    const value = req.query[key];
-    if (!value.match(alphanumericPattern)) {
-      return res.status(400).json({ err: `Invalid input in query parameter "${key}". "${value}" contains illegal characters. Only letters and digits are allowed.` });
-    }
-  }
-
-  // This route also accepts any query parameter so live data can be filetered
-  Flight.getAll(req.query, (err, data) => {
-
-    if (err)
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving flights."
-      });
-    else res.send(data);
-  });
-};
 
 
 
-// Find a single Flight with a FlightNo
-exports.findOne = (req, res) => {
-  Flight.findById(req.params.id, (err, data) => {
-    if (err) {
-      if (err.kind === "not_found") {
-        res.status(404).send({
-          message: `Not found Flight with FlightNo ${req.params.id}.`
-        });
-      } else {
-        res.status(500).send({
-          message: "Error retrieving Flight with FlightNo " + req.params.id
-        });
-      }
-    } else res.send(data);
-  });
-};
 
 
 
-// Update a Flight identified by the id in the request
+
+//Update a Flight identified by the id in the request
 exports.update = (req, res) => {
   // Validate Request
   if (!req.body) {
@@ -146,51 +209,7 @@ exports.deleteAll = (req, res) => {
 
 
 
-// Find all Departing Flights
-exports.findAllDepartures = (req, res) => {
-
-  // This code is to help prevent SQL injection attacks by erroring if illegal characters are used.
-  const alphanumericPattern = /^[A-Za-z0-9]+$/;
-  for (const key in req.query) {
-    const value = req.query[key];
-    if (!value.match(alphanumericPattern)) {
-      return res.status(400).json({ err: `Invalid input in query parameter "${key}". "${value}" contains illegal characters. Only letters and digits are allowed.` });
-    }
-  }
-
-  // This route also accepts any query parameter so live data can be filetered
-  Flight.getAllDepartingFlights(req.query, (err, data) => {
-    if (err) {
-      res.status(500).send({
-        message: err.message || "Some error occurred while retrieving flights."
-      });
-    } else {
-      res.send(data);
-    }
-  });
-};
 
 
 
-// Find all Arriving Flights
-exports.findAllArrivals = (req, res) => {
 
-  // This code is to help prevent SQL injection attacks by erroring if illegal characters are used.
-  const alphanumericPattern = /^[A-Za-z0-9]+$/;
-  for (const key in req.query) {
-    const value = req.query[key];
-    if (!value.match(alphanumericPattern)) {
-      return res.status(400).json({ err: `Invalid input in query parameter "${key}". "${value}" contains illegal characters. Only letters and digits are allowed.` });
-    }
-  }
-
-  // This route also accepts any query parameter so live data can be filetered
-  Flight.getAllArrivingFlights(req.query, (err, data) => {
-    if (err)
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving flights."
-      });
-    else res.send(data);
-  });
-};
