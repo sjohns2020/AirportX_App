@@ -116,7 +116,8 @@ Create a full stack app using React and Node.js to allow a user to view and filt
 <br>
 
 ### 4 Start the Client (React)
-- ```sh 
+- Run React App
+    ```sh 
         #terminal
         cd client
 
