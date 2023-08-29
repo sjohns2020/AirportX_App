@@ -1,7 +1,9 @@
 # AirportX_App
 
 
-[PLAY DEMO](https://www.youtube.com/watch?v=GIcc9Aq3LBw)
+
+[![PLAY DEMO](./demo.png)](https://www.youtube.com/watch?v=GIcc9Aq3LBw)
+
 
 ### Brief
 
@@ -204,4 +206,3 @@ There is no authentication for the Flight API
 - Build the React app, refactoring code where needed. 
 - TESTING - Tested the React app using Cypress testing library.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/GIcc9Aq3LBw?si=67xmZExOBcTecGSQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
