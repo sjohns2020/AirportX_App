@@ -39,6 +39,8 @@
   border-radius: 1em;
   background-color: white;
   border-top-left-radius: 0;
+  border: 7px solid white;
+  height: 50%;
 }
 
 .title-container {
@@ -47,9 +49,12 @@
   justify-content: center;
   align-items: center;
   padding: 0.5em;
+  /* background-color: white;
+  color: black; */
   border: 3px solid white;
   border-radius: 0.5em;
   border-top-left-radius: 0;
+  height: 50%;
 }
 
 .logo {
@@ -580,6 +585,15 @@
     height: 14em;
     overflow: scroll;
   }
+  .title-container {
+    font-size: small;
+  }
+  .logo-container {
+    display: none;
+  }
+  .table-row {
+    font-size: x-small;
+  }
 }
 
 @media (max-width: 1400px) {
@@ -618,6 +632,9 @@
   .filter-container {
     height: 16em;
     overflow: scroll;
+  }
+  .title-container {
+    font-size: medium;
   }
 }
 

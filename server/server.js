@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const cors = require("cors") // Eliminating CORS issues
+const cors = require("cors"); // Eliminating CORS issues
 app.use(cors());
 app.use(express.json()); // Parse requests into json
 
@@ -12,19 +12,12 @@ app.get("/", (req, res) => {
 });
 
 // Created a resueable RESTfull router for any table in the database if the database is extended. 
-const createRouter = require("./routes/router.js") 
+const createRouter = require("./routers/router.js") ;
 const flights = require("./controllers/flight.controller.js");
 const flightsRouter = createRouter(flights);
 app.use('/api/flights', flightsRouter);
 
-// Bespoke routes for Flights outwith the reuseable RESTfull router
-// Retrieve all departing Flights
-app.use('/api/flights/departures', flights.findAllDepartures)
-// Retrieve all arriving Flights
-app.use('/api/flights/arrivals', flights.findAllArrivals)
-
-
-
+// This is needed to Chai Testing
 const PORT = process.env.PORT || 8080;
 const http = require('http');
 const server = http.createServer(app);
