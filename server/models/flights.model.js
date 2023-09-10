@@ -51,13 +51,11 @@ Flight.findById = (FlightNo, result) => {
             result(err, null);
             return;
         }
-
         if (res.length) {
-            console.log("found flight: ", res[0]);
+            // console.log("found flight: ", res[0]);
             result(null, res[0]);
             return;
         }
-    
         // not found Flight with the id
         result({ kind: "not_found" }, null);
     });
@@ -65,7 +63,6 @@ Flight.findById = (FlightNo, result) => {
 
 // GET ALL FLIGHTS
 Flight.getAll = (queries, result) => {
-    console.log("QUERIES", queries);
 
     ////////////////BUILDING THE SQL QUERY////////////////
 
@@ -76,7 +73,6 @@ Flight.getAll = (queries, result) => {
     // Allow extension to Basic SQL Query if there are one or more additional Query Parameters
     for (let key in queries) {
         const values = queries[key];
-        console.log(values)
         if (values) { // if there are any additional Query Parameters
             const condition = (typeof values === 'string')
                 ? `\`${key}\` LIKE '%${values}%'` // If there is only one Query Parameter (and therefore a string)
@@ -118,14 +114,12 @@ Flight.updateById = (FlightNo, flight, result) => {
                 result(null, err);
                 return;
             }
-
             if (res.affectedRows == 0) {
                 // not found Flight with the id
                 result({ kind: "not_found" }, null);
                 return;
             }
-         
-            console.log("updated flight: ", flight);
+            // console.log("updated flight: ", flight);
             result(null, flight);
         }
     );
@@ -138,15 +132,13 @@ Flight.remove = (FlightNo, result) => {
             console.log("error: ", err);
             result(null, err);
             return;
-        }
-
+        };
         if (res.affectedRows == 0) {
             // not found Flight with the id
             result({ kind: "not_found" }, null);
             return;
-        }
-        
-        console.log("deleted flight with FlightNo: ", FlightNo);
+        };
+        // console.log("deleted flight with FlightNo: ", FlightNo);
         result(null, res);
     });
 };
@@ -159,8 +151,7 @@ Flight.removeAll = result => {
             result(null, err);
             return;
         }
-        
-        console.log(`deleted ${res.affectedRows} flights`);
+        // console.log(`deleted ${res.affectedRows} flights`);
         result(null, res);
     });
 };
@@ -178,7 +169,6 @@ Flight.getAllDepartingFlights = (queries, result) => {
     // Allow extension to the Basic SQL Query if there are one or more Query Parameters
     for (let key in queries) {
         const values = queries[key];
-        console.log(values)
         if (values) { // if there are any additional Query Parameters
             const condition = (typeof values === 'string')
                 ? `\`${key}\` LIKE '%${values}%'` // if there is only one Query Parameters (and therefore a string)
@@ -196,16 +186,13 @@ Flight.getAllDepartingFlights = (queries, result) => {
     query += " ORDER BY STR_TO_DATE(`Date`, '%m/%d/%Y'), STR_TO_DATE(`Time`, '%H:%i')";
     /////////////SQL QUERY IS NOW READY///////////////////
 
-    console.log("Query:" + query);
-
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
             return;
         }
-   
-        console.log("flights: ", res);
+        // console.log("flights: ", res);
         result(null, res);
     });
 };
@@ -221,7 +208,6 @@ Flight.getAllArrivingFlights = (queries, result) => {
     // Allow extension to Basic SQL Query if there are one or more additional Query Parameters
     for (let key in queries) {
         const values = queries[key];
-        console.log(values)
         if (values) { // If there are any additional Query Parameters
             const condition = (typeof values === 'string')
                 ? `\`${key}\` LIKE '%${values}%'` // If there is only one Query Parameter (and therefore a string)
@@ -239,16 +225,13 @@ Flight.getAllArrivingFlights = (queries, result) => {
     query += " ORDER BY STR_TO_DATE(`Date`, '%m/%d/%Y'), STR_TO_DATE(`Time`, '%H:%i')";
     //////////////////////////////////////////////
 
-    console.log("Query:" + query);
-
     sql.query(query, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
             return;
-        }
-       
-        console.log("flights: ", res);
+        };
+        // console.log("flights: ", res);
         result(null, res);
     });
 };
