@@ -4,7 +4,7 @@ const Header = () => {
 
     return (
         <header className="header">
-            <h1 className="title-container">Arrivals & Departures</h1>
+            <h1 data-testid="get-header" className="title-container">Arrivals & Departures</h1>
 
             <section>
                 <div className="logo-container">

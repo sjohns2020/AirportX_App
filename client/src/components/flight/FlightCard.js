@@ -12,10 +12,10 @@ const FlightCard = ({ flight, expand, setExpand }) => {
 
     // Toggle between simple and detailled view of only the particular flight card
     const showMoreDetail = () => {
-        setExpand(flight.flightNo)
+        setExpand(flight.flightNo);
     }
     const showLessDetail = () => {
-        setExpand("")
+        setExpand("");
     }
 
 

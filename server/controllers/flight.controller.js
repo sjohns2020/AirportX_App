@@ -2,9 +2,8 @@
 const Flight = require("../models/flights.model");
 
 
-// Retrieve all Flights from the database (with condition).
+// FIND ALL
 exports.findAll = (req, res) => {
-
   // This code is to help prevent SQL injection attacks by erroring if illegal characters are used.
   const alphanumericPattern = /^[A-Za-z0-9]+$/;
   for (const key in req.query) {
@@ -13,10 +12,8 @@ exports.findAll = (req, res) => {
       return res.status(400).json({ err: `Invalid input in query parameter "${key}". "${value}" contains illegal characters. Only letters and digits are allowed.` });
     }
   }
-
   // This route also accepts any query parameter so live data can be filetered
   Flight.getAll(req.query, (err, data) => {
-
     if (err)
       res.status(500).send({
         message:
@@ -27,13 +24,13 @@ exports.findAll = (req, res) => {
 };
 
 
-// Find a single Flight with a FlightNo
+// FIND ONE
 exports.findOne = (req, res) => {
   Flight.findById(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Flight with FlightNo ${req.params.id}.`
+          message: "Not found Flight with FlightNo" + req.params.id
         });
       } else {
         res.status(500).send({
@@ -45,19 +42,15 @@ exports.findOne = (req, res) => {
 };
 
 
-
-// Find all Departing Flights
+// FIND ALL Departures
 exports.findAllDepartures = (req, res) => {
-
   // This code is to help prevent SQL injection attacks by erroring if illegal characters are used.
   const alphanumericPattern = /^[A-Za-z0-9]+$/;
   for (const key in req.query) {
     const value = req.query[key];
     if (!value.match(alphanumericPattern)) {
       return res.status(400).json({ err: `Invalid input in query parameter "${key}". "${value}" contains illegal characters. Only letters and digits are allowed.` });
-    }
-  }
-
+  }}
   // This route also accepts any query parameter so live data can be filetered
   Flight.getAllDepartingFlights(req.query, (err, data) => {
     if (err) {
@@ -66,14 +59,13 @@ exports.findAllDepartures = (req, res) => {
       });
     } else {
       res.send(data);
-    }
+    };
   });
 };
 
 
-// Find all Arriving Flights
+// FIND ALL Arrivals
 exports.findAllArrivals = (req, res) => {
-
   // This code is to help prevent SQL injection attacks by erroring if illegal characters are used.
   const alphanumericPattern = /^[A-Za-z0-9]+$/;
   for (const key in req.query) {
@@ -82,7 +74,6 @@ exports.findAllArrivals = (req, res) => {
       return res.status(400).json({ err: `Invalid input in query parameter "${key}". "${value}" contains illegal characters. Only letters and digits are allowed.` });
     }
   }
-
   // This route also accepts any query parameter so live data can be filetered
   Flight.getAllArrivingFlights(req.query, (err, data) => {
     if (err)
@@ -95,14 +86,7 @@ exports.findAllArrivals = (req, res) => {
 };
 
 
-
-
-
-
-
-// Will need to Comment out the CREATE, UPDATE and DELETE controllers until we have authentication. 
-
-// Create and Save a new Flight
+// CREATE
 exports.create = (req, res) => {
   // Validate request
   if (!req.body) {
@@ -110,23 +94,8 @@ exports.create = (req, res) => {
       message: "Content can not be empty!"
     });
   }
-
   // Create a Flight
-  const flight = new Flight({
-    FlightNo: req.body.FlightNo,
-    Date: req.body.Date,
-    Time: req.body.Time,
-    ArrDep: req.body.ArrDep,
-    PortOfCallA: req.body.PortOfCallA,
-    Status: req.body.Status,
-    OtherInfo: req.body.OtherInfo,
-    Additional: req.body.Additional,
-    Airline: req.body.Airline,
-    Image: req.body.Image,
-    ArrHall: req.body.ArrHall
-  });
-
-
+  const flight = new Flight(req.body);
 
   // Save Flight in the database
   Flight.create(flight, (err, data) => {
@@ -140,13 +109,7 @@ exports.create = (req, res) => {
 };
 
 
-
-
-
-
-
-
-//Update a Flight identified by the id in the request
+// UPDATE ONE
 exports.update = (req, res) => {
   // Validate Request
   if (!req.body) {
@@ -154,9 +117,6 @@ exports.update = (req, res) => {
       message: "Content can not be empty!"
     });
   }
-
-  console.log(req.body);
-
   Flight.updateById(
     req.params.id,
     new Flight(req.body),
@@ -177,14 +137,13 @@ exports.update = (req, res) => {
 };
 
 
-
-// Delete a Flight with the specified id in the request
+// DELETE ONE
 exports.delete = (req, res) => {
   Flight.remove(req.params.FlightNo, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Flight with FlightNo ${req.params.FlightNo}.`
+          message: "Not found Flight with FlightNo" + req.params.FlightNo
         });
       } else {
         res.status(500).send({
@@ -195,7 +154,8 @@ exports.delete = (req, res) => {
   });
 };
 
-// Delete all Flights from the database.
+
+// DELETE ALL
 exports.deleteAll = (req, res) => {
   Flight.removeAll((err, data) => {
     if (err)

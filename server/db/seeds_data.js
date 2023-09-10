@@ -2946,7 +2946,6 @@ db.query("DROP TABLE IF EXISTS flights", (err) => {
       flightsData.forEach(flight => {
         Flight.create(new Flight(flight), (err, res) => {
           if (err) throw err;
-          //   console.log("Created flight:", res);
         });
       });
 

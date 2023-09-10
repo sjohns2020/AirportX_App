@@ -2,7 +2,7 @@
 import FlightDetails from "./FlightDetails";
 
 const DetailedFlightCard = ({ flight, showLessDetail, formattedTime }) => {
-   
+
     return (
         <div className="table-row-exp" onClick={showLessDetail}>
             <div className="table-row-expanded" >

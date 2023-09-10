@@ -4,25 +4,27 @@ import FilterBar from "./search/FilterBar";
 import SearchBar from "./search/SearchBar";
 
 // Flights list reneters all flight data, search, filter and sort functionality
-const FlightList = ({ flights, getDepartures, getArrivals, getFlights, sortFlights, searchFlight, searchError, setSearchError, tab, setTab, uniqueAirlines }) => {
+const FlightList = ({ flights, getDepartures, getArrivals, getFlights, sortFlights, searchFlight, setSearchError, tab, setTab, uniqueAirlines }) => {
 
     // Handles state to conditionally render the expansion of the flight card
-    const [expand, setExpand] = useState("")
+    const [expand, setExpand] = useState("");
 
 
-    // Toggles between each tab and fetches the correct flight data to display ( All flights, arrivals, departures, sorted data) 
+    // Toggles between each tab and fetches the correct flight 
+    // data to display ( All flights, arrivals, departures, sorted data) 
     const toggleTab = (e) => {
-        const value = e.target.getAttribute("data-tab")
-        setTab(value)
-        const props = { getDepartures, getArrivals, getFlights, sortFlights }
+        const value = e.target.getAttribute("data-tab");
+        setTab(value);
+        const props = { getDepartures, getArrivals, getFlights, sortFlights };
         if (props[value]) {
-            props[value]()
+            props[value]();
         }
     }
 
-    // Handles the column heading being clicked and sorts the flight data in the FlightContainer
+    // Handles the column heading being clicked and sorts 
+    // the flight data in the FlightContainer
     const sortByColumn = (e) => {
-        sortFlights(e.target.value)
+        sortFlights(e.target.value);
     }
 
     // Handles displaying a FlightCard component for each flight
